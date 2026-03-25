@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Narentis — India's GST ITC Defence Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#04080F;--ink2:#1A1F36;--ink3:#4A5168;--ink4:#8B91A8;
+  --blue:#0057FF;--blue2:#0041CC;--blue3:#E8F0FF;--blue4:#F0F5FF;
+  --surface:#F7F8FC;--white:#FFFFFF;--border:#E4E7F0;--border2:#C8CDD8;
+  --green:#0A6E3F;--green-l:#E6F5EE;--green-t:#12A05A;
+  --amber:#7A4F00;--amber-l:#FFF7E6;--amber-t:#D4860A;
+  --red:#7A1515;--red-l:#FFF0F0;--red-t:#D42020;
+  --purple:#3D1A8A;--purple-l:#F0ECFF;
+  --gold:#92620A;--gold-l:#FEF3C7;--gold-t:#D97706;
+  --shadow-xs:0 1px 2px rgba(4,8,15,0.06);
+  --shadow-sm:0 1px 4px rgba(4,8,15,0.06),0 4px 12px rgba(4,8,15,0.06);
+  --shadow-md:0 2px 8px rgba(4,8,15,0.06),0 8px 32px rgba(4,8,15,0.08);
+  --shadow-lg:0 4px 16px rgba(4,8,15,0.08),0 24px 64px rgba(4,8,15,0.1);
+  --r-sm:6px;--r-md:10px;--r-lg:16px;--r-xl:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--ink);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.15;letter-spacing:-0.02em;}
+button{font-family:'Inter',sans-serif;cursor:pointer;}
+input,textarea,select{font-family:'Inter',sans-serif;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;height:60px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;}
+.nav-left{display:flex;align-items:center;gap:32px;}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.logo-mark{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.logo-mark::before{content:'';position:absolute;width:18px;height:18px;border:2px solid rgba(255,255,255,0.4);border-radius:50%;top:6px;left:6px;}
+.logo-mark::after{content:'N';position:absolute;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:white;top:50%;left:50%;transform:translate(-50%,-50%);}
+.logo-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;}
+.logo-text span{color:var(--blue);}
+.nav-links{display:flex;gap:2px;}
+.nav-link{padding:6px 12px;border-radius:var(--r-sm);font-size:13px;font-weight:500;color:var(--ink3);cursor:pointer;transition:all 0.15s;border:none;background:none;}
+.nav-link:hover{color:var(--ink);background:var(--surface);}
+.nav-link.active{color:var(--blue);background:var(--blue3);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-cta{background:var(--blue);color:white;padding:8px 18px;border-radius:var(--r-sm);font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all 0.15s;}
+.nav-cta:hover{background:var(--blue2);}
+.nav-pill{background:var(--green-l);color:var(--green);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:0.04em;}
+.nav-v1{background:var(--gold-l);color:var(--gold);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:0.06em;margin-left:4px;}
+
+/* PAGES */
+.page{display:none;}
+.page.active{display:block;}
+
+/* PAGE HERO */
+.page-hero{background:var(--surface);border-bottom:1px solid var(--border);padding:40px 2rem;}
+.page-hero-inner{max-width:1200px;margin:0 auto;}
+.page-hero h1{font-size:clamp(24px,3vw,32px);font-weight:800;color:var(--ink);margin-bottom:6px;}
+.page-hero p{font-size:14px;color:var(--ink3);}
+.page-body{max-width:1200px;margin:0 auto;padding:36px 2rem;}
+
+/* HERO (HOME) */
+.hero{padding:100px 2rem 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+@media(max-width:768px){.hero{grid-template-columns:1fr;padding:60px 1.5rem 48px;}}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:20px;padding:5px 14px 5px 8px;font-size:12px;font-weight:500;color:var(--ink3);margin-bottom:24px;}
+.hero-kicker-dot{width:6px;height:6px;border-radius:50%;background:var(--green-t);}
+.hero-h1{font-size:clamp(36px,5vw,56px);font-weight:800;color:var(--ink);margin-bottom:20px;line-height:1.08;}
+.hero-h1 em{font-style:normal;color:var(--blue);}
+.hero-sub{font-size:16px;color:var(--ink3);line-height:1.7;margin-bottom:36px;max-width:460px;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{background:var(--blue);color:white;padding:12px 24px;border-radius:var(--r-md);font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all 0.15s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{background:var(--blue2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,87,255,0.3);}
+.btn-ghost{background:transparent;color:var(--ink);padding:12px 24px;border-radius:var(--r-md);font-size:14px;font-weight:500;border:1px solid var(--border2);cursor:pointer;transition:all 0.15s;}
+.btn-ghost:hover{background:var(--surface);border-color:var(--ink3);}
+
+.stats-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:28px 2rem;}
+.stats-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;}
+.stat-item{text-align:center;padding:0 24px;border-right:1px solid var(--border);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--blue);line-height:1;}
+.stat-lbl{font-size:12px;color:var(--ink4);margin-top:4px;letter-spacing:0.03em;}
+
+.features-section{padding:80px 2rem;max-width:1200px;margin:0 auto;}
+.section-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:10px;}
+.section-h2{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--ink);margin-bottom:16px;}
+.section-sub{font-size:15px;color:var(--ink3);max-width:500px;line-height:1.7;margin-bottom:52px;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+@media(max-width:900px){.features-grid{grid-template-columns:1fr;}}
+.feature-tile{background:var(--white);padding:36px 32px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.feature-tile:hover{background:var(--blue4);}
+.feature-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:transparent;transition:background 0.2s;}
+.feature-tile:hover::before{background:var(--blue);}
+.ft-number{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--ink4);margin-bottom:20px;letter-spacing:0.06em;}
+.ft-icon{font-size:28px;margin-bottom:16px;}
+.ft-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.ft-desc{font-size:13px;color:var(--ink3);line-height:1.7;}
+.ft-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--blue);margin-top:16px;}
+.ft-new{display:inline-block;background:var(--gold-l);color:var(--gold);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px;letter-spacing:0.05em;}
+
+.how-section{background:var(--ink);padding:80px 2rem;}
+.how-inner{max-width:1200px;margin:0 auto;}
+.how-inner .section-h2{color:white;margin-bottom:52px;}
+.steps-list{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;}
+.steps-list::before{content:'';position:absolute;top:20px;left:20px;right:20px;height:1px;background:rgba(255,255,255,0.1);}
+.step-item{padding:0 16px;position:relative;z-index:1;}
+.step-num{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:white;background:var(--ink);margin-bottom:20px;}
+.step-active .step-num{background:var(--blue);border-color:var(--blue);}
+.step-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:white;margin-bottom:8px;}
+.step-desc{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;}
+
+.cta-section{padding:80px 2rem;text-align:center;}
+.cta-box{max-width:640px;margin:0 auto;background:var(--ink);border-radius:var(--r-xl);padding:56px 48px;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(0,87,255,0.15);}
+.cta-box h2{font-size:clamp(24px,4vw,34px);font-weight:800;color:white;margin-bottom:12px;position:relative;}
+.cta-box p{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:28px;position:relative;}
+
+footer{border-top:1px solid var(--border);padding:32px 2rem;background:var(--white);}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-brand{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--ink);}
+.footer-brand span{color:var(--blue);}
+.footer-note{font-size:12px;color:var(--ink4);max-width:500px;line-height:1.6;}
+.footer-copy{max-width:1200px;margin:16px auto 0;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.footer-copy span{font-size:11px;color:var(--ink4);}
+
+/* ANALYSER */
+.analyser-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:768px){.analyser-grid{grid-template-columns:1fr;}}
+.panel{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-xs);}
+.panel-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.panel-head-left{display:flex;align-items:center;gap:8px;}
+.panel-dots{display:flex;gap:5px;}
+.panel-dot{width:10px;height:10px;border-radius:50%;}
+.panel-title{font-size:13px;font-weight:600;color:var(--ink);margin-left:4px;}
+.panel-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--blue3);color:var(--blue);}
+.panel-body{padding:20px;}
+textarea{width:100%;border:1px solid var(--border);border-radius:var(--r-md);padding:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink2);resize:vertical;min-height:320px;outline:none;transition:border-color 0.15s;background:var(--surface);line-height:1.7;}
+textarea:focus{border-color:var(--blue);background:var(--white);}
+.action-row{display:flex;gap:8px;margin-top:12px;}
+.run-btn{flex:1;background:var(--blue);color:white;border:none;border-radius:var(--r-md);padding:13px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.run-btn:hover{background:var(--blue2);}
+.demo-load-btn{background:var(--surface);color:var(--ink3);border:1px solid var(--border);border-radius:var(--r-md);padding:13px 16px;font-size:12px;font-weight:500;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.demo-load-btn:hover{background:var(--blue3);color:var(--blue);border-color:var(--blue);}
+.empty-report{text-align:center;padding:60px 20px;color:var(--ink4);}
+.empty-icon{font-size:36px;margin-bottom:12px;opacity:0.5;}
+.empty-txt{font-size:13px;line-height:1.7;color:var(--ink4);}
+.report-wrap{font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.8;}
+.r-block{margin-bottom:16px;}
+.r-block-title{font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--ink4);border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:10px;}
+.r-row{display:flex;gap:8px;margin-bottom:3px;align-items:flex-start;}
+.r-key{color:var(--ink4);min-width:130px;flex-shrink:0;font-size:10px;}
+.r-val{color:var(--ink);font-weight:500;font-size:11px;}
+.info-strip{background:var(--amber-l);border:1px solid #EDD580;border-radius:var(--r-md);padding:14px 16px;font-size:12px;color:var(--amber);line-height:1.7;margin-top:16px;}
+.spinner{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,0.25);border-top-color:white;border-radius:50%;animation:spin 0.6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* GSTAT ALERT BANNER */
+.gstat-banner{background:var(--gold-l);border:1px solid #EDD580;border-left:4px solid var(--gold-t);border-radius:var(--r-md);padding:14px 16px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px;}
+.gstat-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.gstat-title{font-size:13px;font-weight:600;color:var(--gold);margin-bottom:4px;}
+.gstat-text{font-size:12px;color:var(--amber);line-height:1.6;}
+
+/* ── LIBRARY v2 ────────────────────────────────────────────── */
+.lib-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
+.search-box{flex:1;min-width:220px;position:relative;}
+.search-box input{width:100%;padding:10px 14px 10px 36px;border:1px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;background:var(--white);transition:border-color 0.15s;color:var(--ink);}
+.search-box input:focus{border-color:var(--blue);}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink4);font-size:13px;}
+select{padding:10px 14px;border:1px solid var(--border);border-radius:var(--r-md);font-size:13px;outline:none;background:var(--white);color:var(--ink);cursor:pointer;}
+.count-label{font-size:12px;color:var(--ink4);white-space:nowrap;padding:10px 0;}
+
+/* Court tier badges */
+.tier-sc{background:#FEF3C7;color:#92620A;border:1px solid #FDE68A;}
+.tier-hc{background:var(--blue3);color:var(--blue);}
+.tier-gstat{background:var(--purple-l);color:var(--purple);}
+.tier-aar{background:var(--green-l);color:var(--green);}
+
+/* Case card v2 */
+.case-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:8px;overflow:hidden;transition:all 0.15s;}
+.case-card:hover{border-color:var(--blue);box-shadow:var(--shadow-sm);}
+.case-card-header{padding:16px 20px;display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:start;cursor:pointer;}
+.case-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink4);font-weight:500;padding-top:2px;}
+.case-main-info{}
+.case-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4;}
+.case-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:0;}
+.case-court-name{font-size:11px;color:var(--ink4);}
+.case-date{font-size:11px;color:var(--ink4);}
+.case-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.won-pill{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;}
+.prov-chip{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;background:var(--blue3);color:var(--blue);white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;}
+.tier-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;}
+.cat-chip{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;background:var(--purple-l);color:var(--purple);}
+
+/* Expandable defence panel */
+.case-expand{display:none;border-top:1px solid var(--border);background:var(--surface);}
+.case-expand.open{display:block;}
+.expand-inner{padding:16px 20px 20px;}
+.expand-section{margin-bottom:16px;}
+.expand-label{font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;}
+.defence-para{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold-t);border-radius:var(--r-md);padding:14px 16px;font-size:12px;line-height:1.8;color:var(--ink2);position:relative;}
+.defence-highlight{background:#FFFDE7;border-radius:2px;padding:1px 3px;}
+.copy-btn{position:absolute;top:10px;right:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:5px 10px;font-size:11px;font-weight:500;color:var(--ink3);cursor:pointer;transition:all 0.15s;}
+.copy-btn:hover{background:var(--blue3);color:var(--blue);border-color:var(--blue);}
+.copy-btn.copied{background:var(--green-l);color:var(--green);border-color:var(--green-t);}
+.pdf-btn{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:white;border:none;border-radius:var(--r-sm);padding:8px 14px;font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;transition:all 0.15s;}
+.pdf-btn:hover{background:var(--blue2);}
+.pdf-btn.disabled{background:var(--surface);color:var(--ink4);border:1px solid var(--border);cursor:not-allowed;}
+.expand-toggle{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:var(--blue);padding:6px 0;cursor:pointer;}
+.toggle-arrow{transition:transform 0.2s;font-size:10px;}
+.toggle-arrow.open{transform:rotate(180deg);}
+
+/* SUPPLIER RISK v2 */
+.risk-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:20px;}
+.risk-tile{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px;text-align:center;box-shadow:var(--shadow-xs);}
+.risk-tile-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
+.risk-tile-lbl{font-size:11px;color:var(--ink4);margin-top:4px;}
+
+/* Hard-lock alert banner */
+.hardlock-banner{background:var(--red-l);border:1px solid #FECACA;border-left:4px solid var(--red-t);border-radius:var(--r-md);padding:14px 16px;margin-bottom:16px;}
+.hl-title{font-size:13px;font-weight:600;color:var(--red);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.hl-body{font-size:12px;color:var(--red);line-height:1.7;}
+.hl-badge{display:inline-block;background:var(--red-t);color:white;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;margin-right:4px;}
+
+/* Table 3.2 lock badge on supplier cards */
+.lock-flag{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;background:#FFF0F0;color:var(--red);border:1px solid #FECACA;}
+.reclaim-flag{background:#FFF7E6;color:var(--amber);border:1px solid #FDE68A;}
+
+.supplier-grid{display:flex;flex-direction:column;gap:8px;}
+.supplier-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px 20px;transition:all 0.15s;overflow:hidden;}
+.supplier-card:hover{border-color:var(--blue);box-shadow:var(--shadow-sm);}
+.supplier-card-main{display:grid;grid-template-columns:1fr auto auto auto auto;gap:16px;align-items:center;}
+@media(max-width:700px){.supplier-card-main{grid-template-columns:1fr 1fr;gap:12px;}}
+.s-name{font-size:13px;font-weight:600;color:var(--ink);}
+.s-gstin{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink4);margin-top:2px;}
+.filing-hist{display:flex;gap:3px;align-items:center;}
+.fh-dot{width:8px;height:8px;border-radius:2px;}
+.s-score{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;}
+.s-itc{font-size:12px;font-weight:600;color:var(--red-t);}
+.risk-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;}
+.rb-green{background:var(--green-l);color:var(--green);}
+.rb-amber{background:var(--amber-l);color:var(--amber);}
+.rb-red{background:var(--red-l);color:var(--red);}
+.rb-black{background:var(--ink);color:#D4A843;}
+.rb-dot{width:6px;height:6px;border-radius:50%;}
+.supplier-flags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);}
+.gstat-action-pill{display:inline-flex;align-items:center;gap:4px;background:var(--purple-l);color:var(--purple);font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;border:1px solid #C4B5FD;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr;}}
+.about-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);padding:28px;box-shadow:var(--shadow-xs);}
+.about-card h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:12px;}
+.about-card p,.about-card li{font-size:13px;color:var(--ink3);line-height:1.8;}
+.about-card ul{padding-left:18px;}
+.about-card li{margin-bottom:3px;}
+.full-col{grid-column:1/-1;}
+.dark-card{background:var(--ink);border-color:var(--ink);}
+.dark-card h3{color:white;}
+.dark-card p,.dark-card li{color:rgba(255,255,255,0.6);}
+.team-ava{width:56px;height:56px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:white;margin-bottom:16px;}
+.team-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:white;margin-bottom:4px;}
+.team-role{font-size:11px;font-weight:600;letter-spacing:0.08em;color:rgba(0,87,255,0.9);margin-bottom:12px;}
+.pricing-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);}
+.pricing-row:last-child{border-bottom:none;}
+.price-tier{font-size:13px;font-weight:500;color:var(--ink);}
+.price-amt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--blue);}
+.price-note{font-size:11px;color:var(--ink4);}
+.disc-box{background:var(--amber-l);border:1px solid #EDD580;border-radius:var(--r-md);padding:12px 14px;font-size:12px;color:var(--amber);line-height:1.6;margin-top:16px;}
+
+/* UTILS */
+.badge-sm{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;}
+.b-green{background:var(--green-l);color:var(--green);}
+.b-blue{background:var(--blue3);color:var(--blue);}
+.b-amber{background:var(--amber-l);color:var(--amber);}
+.b-red{background:var(--red-l);color:var(--red);}
+.b-purple{background:var(--purple-l);color:var(--purple);}
+
+/* CIRCULARS PAGE */
+.circ-grid{display:flex;flex-direction:column;gap:10px;}
+.circ-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:all 0.15s;}
+.circ-card:hover{border-color:var(--blue);box-shadow:var(--shadow-sm);}
+.circ-header{padding:16px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;cursor:pointer;}
+.circ-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--white);background:var(--blue);padding:3px 8px;border-radius:4px;white-space:nowrap;}
+.circ-main{}
+.circ-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4;}
+.circ-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.circ-date{font-size:11px;color:var(--ink4);}
+.circ-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.circ-scope{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;}
+.scope-mismatch{background:var(--blue3);color:var(--blue);}
+.scope-timebar{background:var(--amber-l);color:var(--amber);}
+.scope-procedure{background:var(--purple-l);color:var(--purple);}
+.scope-reversal{background:var(--red-l);color:var(--red);}
+.scope-general{background:var(--green-l);color:var(--green);}
+.mandatory-badge{display:inline-block;background:#FEF3C7;color:#92620A;border:1px solid #FDE68A;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;}
+.circ-expand{display:none;border-top:1px solid var(--border);background:var(--surface);}
+.circ-expand.open{display:block;}
+.circ-expand-inner{padding:16px 20px 20px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:700px){.circ-expand-inner{grid-template-columns:1fr;}}
+.circ-section-label{font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--ink4);text-transform:uppercase;margin-bottom:8px;}
+.circ-summary{font-size:12px;color:var(--ink2);line-height:1.8;}
+.circ-defence{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold-t);border-radius:var(--r-md);padding:14px 16px;font-size:12px;line-height:1.8;color:var(--ink2);position:relative;}
+.circ-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.circ-pdf-btn{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:white;border:none;border-radius:var(--r-sm);padding:7px 12px;font-size:11px;font-weight:500;cursor:pointer;text-decoration:none;transition:all 0.15s;}
+.circ-pdf-btn:hover{background:var(--blue2);}
+.circ-provision-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
+.prov-tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;background:var(--blue3);color:var(--blue);}
+
+/* LEGISLATION LIBRARY */
+.leg-tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap;}
+.leg-tab{padding:8px 16px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--ink3);transition:all 0.15s;}
+.leg-tab.active{background:var(--blue);color:var(--white);border-color:var(--blue);}
+.leg-tab:hover:not(.active){background:var(--blue3);color:var(--blue);border-color:var(--blue);}
+.leg-section{display:none;}
+.leg-section.active{display:block;}
+.act-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:24px;}
+.act-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:all 0.15s;}
+.act-card:hover{border-color:var(--blue);box-shadow:var(--shadow-sm);}
+.act-card-head{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.act-title{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:3px;}
+.act-short{font-size:11px;color:var(--ink4);}
+.act-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.ab-central{background:var(--blue3);color:var(--blue);}
+.ab-state{background:var(--green-l);color:var(--green);}
+.ab-rules{background:var(--purple-l);color:var(--purple);}
+.ab-amended{background:var(--amber-l);color:var(--amber);}
+.act-body{padding:14px 18px;}
+.act-desc{font-size:12px;color:var(--ink3);line-height:1.7;margin-bottom:12px;}
+.act-sections{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.act-sec{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:var(--surface);border-radius:var(--r-sm);font-size:11px;}
+.act-sec-num{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--blue);}
+.act-sec-name{color:var(--ink3);}
+.act-links{display:flex;gap:8px;flex-wrap:wrap;}
+.act-link-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:6px 12px;border-radius:var(--r-sm);text-decoration:none;transition:all 0.15s;}
+.alb-primary{background:var(--blue);color:white;}
+.alb-primary:hover{background:var(--blue2);}
+.alb-secondary{background:var(--surface);color:var(--ink3);border:1px solid var(--border);}
+.alb-secondary:hover{background:var(--blue3);color:var(--blue);border-color:var(--blue);}
+.state-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-xs);}
+.state-table th{background:var(--ink);color:var(--white);font-size:12px;font-weight:500;padding:12px 14px;text-align:left;}
+.state-table td{padding:11px 14px;font-size:12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.state-table tr:last-child td{border-bottom:none;}
+.state-table tr:hover td{background:var(--surface);}
+.state-code-badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;background:var(--blue3);color:var(--blue);padding:2px 8px;border-radius:4px;}
+.itc-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-xs);margin-bottom:16px;}
+.itc-table th{background:var(--blue);color:white;font-size:12px;font-weight:600;padding:12px 14px;text-align:left;}
+.itc-table td{padding:12px 14px;font-size:12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6;}
+.itc-table tr:last-child td{border-bottom:none;}
+.itc-table tr:nth-child(even) td{background:var(--surface);}
+.sec-num{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--blue);font-size:13px;}
+.amend-flag{display:inline-block;font-size:10px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--amber-l);color:var(--amber);margin-left:6px;}
+.leg-search-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="logo" onclick="showPage('home')">
+      <div class="logo-mark"></div>
+      <div class="logo-text">Naren<span>tis</span></div>
+      <span class="nav-v1">v1.0</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link active" id="nav-home" onclick="showPage('home')">Home</button>
+      <button class="nav-link" id="nav-analyser" onclick="showPage('analyser')">Analyser</button>
+      <button class="nav-link" id="nav-library" onclick="showPage('library')">Case Law</button>
+      <button class="nav-link" id="nav-risk" onclick="showPage('risk')">Supplier Risk</button>
+      <button class="nav-link" id="nav-circulars" onclick="showPage('circulars')">Circulars</button>
+      <button class="nav-link" id="nav-legislation" onclick="showPage('legislation')">Legislation</button>
+      <button class="nav-link" id="nav-about" onclick="showPage('about')">About</button>
+    </div>
+  </div>
+  <div class="nav-right">
+    <span class="nav-pill">10/10 Validated</span>
+    <button class="nav-cta" onclick="showPage('analyser')">Analyse Notice →</button>
+  </div>
+</nav>
+
+<!-- ══ HOME ══ -->
+<div class="page active" id="page-home">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="hero">
+      <div>
+        <div class="hero-kicker"><span class="hero-kicker-dot"></span>India's first AI-powered GST ITC defence platform</div>
+        <h1 class="hero-h1">Stop Losing<br/><em>Legitimate</em><br/>Tax Credits.</h1>
+        <p class="hero-sub">Narentis analyses GST ITC denial notices against 75 verified court judgments — and warns you before your suppliers cost you crores.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="showPage('analyser')">Analyse a Notice →</button>
+          <button class="btn-ghost" onclick="showPage('library')">Browse 75 Cases</button>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--shadow-lg);overflow:hidden;">
+          <div style="background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:8px;">
+            <div class="panel-dot" style="background:#FF5F57;"></div>
+            <div class="panel-dot" style="background:#FFBD2E;"></div>
+            <div class="panel-dot" style="background:#28C840;"></div>
+            <span style="font-size:11px;font-weight:600;color:var(--ink4);margin-left:6px;font-family:'Syne',sans-serif;letter-spacing:0.04em;">NARENTIS LEGAL RISK REPORT</span>
+          </div>
+          <div style="padding:20px;">
+            <div style="display:flex;align-items:center;gap:16px;padding:14px;background:var(--green-l);border-radius:var(--r-md);margin-bottom:14px;border-left:3px solid var(--green-t);">
+              <div><div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--green);line-height:1;">1</div><div style="font-size:10px;color:var(--ink4);font-family:'JetBrains Mono',monospace;">/ 10</div></div>
+              <div><div style="font-size:12px;color:var(--green);font-weight:500;">Legal Sustainability Score</div><div style="font-size:11px;color:var(--green);opacity:0.8;margin-top:2px;">Almost certainly unsustainable</div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--ink4);">Category</span><span class="badge-sm b-green">Category 3 — Illegal</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--ink4);">Track</span><span style="font-size:11px;font-weight:500;">Track B — Rule 36(4)</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--ink4);">Tag</span><span class="badge-sm b-purple">T2-C3-CIRCULAR</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);"><span style="font-size:11px;color:var(--ink4);">Case cited</span><span style="font-size:10px;font-weight:500;">Guru Mahesh Medicals (KA HC, 2025)</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;"><span style="font-size:11px;color:var(--ink4);">Action</span><span class="badge-sm b-blue">Writ Petition</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-num">75</div><div class="stat-lbl">Verified Judgments</div></div>
+      <div class="stat-item"><div class="stat-num">10/10</div><div class="stat-lbl">Validation Accuracy</div></div>
+      <div class="stat-item"><div class="stat-num">13</div><div class="stat-lbl">Courts Covered</div></div>
+      <div class="stat-item"><div class="stat-num">0</div><div class="stat-lbl">Hallucinated Citations</div></div>
+      <div class="stat-item"><div class="stat-num">v1.0</div><div class="stat-lbl">With PDF Library</div></div>
+    </div>
+  </div>
+  <div class="features-section">
+    <div class="section-eyebrow">Platform Capabilities</div>
+    <h2 class="section-h2">Everything you need to<br/>defend your ITC.</h2>
+    <div class="features-grid">
+      <div class="feature-tile" onclick="showPage('analyser')">
+        <div class="ft-number">01 — ANALYSE</div>
+        <div class="ft-icon">⚖️</div>
+        <div class="ft-title">Notice Analyser</div>
+        <p class="ft-desc">Paste any GST demand notice. Dual-track legal analysis, Legal Sustainability Score (1–10), verified case citation, and recommended action — in under 60 seconds. Now with GSTAT 2025 appeal pathway.<span class="ft-new">NEW</span></p>
+        <div class="ft-link">Try it now →</div>
+      </div>
+      <div class="feature-tile" onclick="showPage('risk')">
+        <div class="ft-number">02 — PREVENT</div>
+        <div class="ft-icon">🛡️</div>
+        <div class="ft-title">Supplier Risk Monitor</div>
+        <p class="ft-desc">GREEN / AMBER / RED / BLACK supplier scoring. Now includes GSTR-3B hard-locking impact flags and Table 3.2 auto-lock warnings per the 2025 CGST amendments.<span class="ft-new">UPDATED</span></p>
+        <div class="ft-link">View dashboard →</div>
+      </div>
+      <div class="feature-tile" onclick="showPage('library')">
+        <div class="ft-number">03 — RESEARCH</div>
+        <div class="ft-icon">📚</div>
+        <div class="ft-title">Case Law Library</div>
+        <p class="ft-desc">75 verified judgments with defence paragraph extraction, PDF links, court hierarchy filter (SC / HC by state / GSTAT / AAR), and one-click copy of key legal arguments.<span class="ft-new">UPGRADED</span></p>
+        <div class="ft-link">Browse cases →</div>
+      </div>
+    </div>
+  </div>
+  <div class="how-section">
+    <div class="how-inner">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.4);">How It Works</div>
+      <h2 class="section-h2">From notice to verdict in five steps.</h2>
+      <div class="steps-list">
+        <div class="step-item step-active"><div class="step-num">1</div><div class="step-title">Input Notice</div><div class="step-desc">Paste your DRC-01 or adjudication order</div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-title">Data Extraction</div><div class="step-desc">15 mandatory fields extracted automatically</div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-title">Legal Analysis</div><div class="step-desc">Dual-track decision tree analysis</div></div>
+        <div class="step-item"><div class="step-num">4</div><div class="step-title">Case Match</div><div class="step-desc">Best-fit judgment from verified library</div></div>
+        <div class="step-item"><div class="step-num">5</div><div class="step-title">Human Review</div><div class="step-desc">CA or lawyer approves before action</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-section">
+    <div class="cta-box">
+      <h2>Analyse your first notice free.</h2>
+      <p>Narentis v1.0 — now with PDF judgment library, court hierarchy filter, defence paragraph extraction, and 2025 GSTR-3B hard-locking compliance flags.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;">
+        <button class="btn-primary" onclick="showPage('analyser')">Start Analysing →</button>
+        <button class="btn-ghost" style="color:white;border-color:rgba(255,255,255,0.2);" onclick="showPage('library')">Browse Cases</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Naren<span>tis</span></div>
+      <div class="footer-note">AI-powered GST ITC Denial Pattern Recognition & Early Warning System. Not legal advice — all outputs require review by a qualified GST practitioner before any action is taken.</div>
+    </div>
+    <div class="footer-copy">
+      <span>© 2025 Kaustubh Balaji. All rights reserved. Narentis is proprietary software — narentis.ai</span>
+      <span>Unauthorised copying, modification, or commercial use strictly prohibited.</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ══ ANALYSER ══ -->
+<div class="page" id="page-analyser">
+  <div class="page-hero"><div class="page-hero-inner"><h1>Notice Analyser</h1><p>Paste a GST demand notice or DRC-01 to receive a Narentis Legal Risk Report</p></div></div>
+  <div class="page-body">
+    <div class="gstat-banner">
+      <div class="gstat-icon">⚠️</div>
+      <div>
+        <div class="gstat-title">GSTAT 2025 — New Appeal Pathway Now Available</div>
+        <div class="gstat-text">The GST Appellate Tribunal is now operationally active under the CGST Third Amendment Rules 2025. For notices where the First Appellate Authority has ruled against the taxpayer, Narentis will now surface "Appeal to GSTAT" as a recommended action. Single-member bench available for cases below ₹50 lakh cumulative tax demand not involving a question of law.</div>
+      </div>
+    </div>
+    <div class="analyser-grid">
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-head-left"><div class="panel-dots"><div class="panel-dot" style="background:#FF5F57;"></div><div class="panel-dot" style="background:#FFBD2E;"></div><div class="panel-dot" style="background:#28C840;"></div></div><span class="panel-title">Notice Input</span></div>
+          <span class="panel-tag">DRC-01 / DRC-07 / Order</span>
+        </div>
+        <div class="panel-body">
+          <textarea id="noticeInput" placeholder="Paste the full text of your GST Show Cause Notice, DRC-01, or adjudication order here...&#10;&#10;Narentis v1.0 extracts:&#10;• Taxpayer GSTIN and name&#10;• Notice reference and date&#10;• Financial year under dispute&#10;• ITC amount denied (Rs.)&#10;• Legal provision cited&#10;• SCN issued (Y/N)&#10;• Personal hearing given (Y/N)&#10;• CBIC Circular 183 compliance&#10;• Supplier GSTIN details&#10;• GSTR-2A/2B mismatch status&#10;• GSTAT appeal eligibility"></textarea>
+          <div class="action-row">
+            <button class="run-btn" onclick="runAnalysis()" id="runBtn"><span id="btnTxt">⚖️ Run Narentis Analysis</span><span id="btnSpin" style="display:none;" class="spinner"></span></button>
+            <button class="demo-load-btn" onclick="loadDemo()">Load Sample</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-head-left"><div class="panel-dots"><div class="panel-dot" style="background:#28C840;"></div></div><span class="panel-title">Legal Risk Report</span></div>
+          <span class="panel-tag">Narentis v1.0</span>
+        </div>
+        <div class="panel-body" id="reportOut">
+          <div class="empty-report">
+            <div class="empty-icon">📋</div>
+            <div class="empty-txt">Your Narentis Legal Risk Report appears here.<br/><br/>Section A — Notice Details (15 fields)<br/>Section B — Analysis Result + Score<br/>Section C — Legal Reasoning<br/>Section D — Procedural Findings<br/>Section E — Verified Case Law Citation<br/>Section F — Recommended Action + GSTAT Path<br/>Section G — Lawyer Review Sign-off</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-strip">⚠️ <strong>Mandatory disclaimer:</strong> Narentis is an AI-assisted decision-support tool and does not constitute legal advice. All outputs must be reviewed by a qualified CA or GST practitioner before any action is taken.</div>
+  </div>
+</div>
+
+<!-- ══ LIBRARY v2 ══ -->
+<div class="page" id="page-library">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Case Law Library <span class="nav-v1" style="vertical-align:middle;">v1.0</span></h1>
+      <p>75 verified judgments — with defence paragraphs, PDF links, and court hierarchy filter. Click any case to expand defence arguments.</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="lib-controls">
+      <div class="search-box"><span class="search-icon">🔍</span><input type="text" id="srch" placeholder="Search case name, court, legal reasoning..." oninput="filterLib()"/></div>
+      <select id="fTier" onchange="filterLib()">
+        <option value="">All Court Tiers</option>
+        <option value="Supreme Court">Supreme Court of India</option>
+        <option value="High Court">High Courts</option>
+        <option value="GSTAT">GST Appellate Tribunal</option>
+        <option value="AAR">AAR / AAAR</option>
+      </select>
+      <select id="fCourt" onchange="filterLib()">
+        <option value="">All Courts</option>
+        <option value="Madras">Madras HC</option>
+        <option value="Kerala">Kerala HC</option>
+        <option value="Karnataka">Karnataka HC</option>
+        <option value="Calcutta">Calcutta HC</option>
+        <option value="Patna">Patna HC</option>
+        <option value="Allahabad">Allahabad HC</option>
+        <option value="Gauhati">Gauhati HC</option>
+        <option value="Delhi">Delhi HC</option>
+        <option value="Madhya Pradesh">MP HC</option>
+        <option value="Andhra Pradesh">AP HC</option>
+        <option value="Jharkhand">Jharkhand HC</option>
+        <option value="Tripura">Tripura HC</option>
+        <option value="Supreme">Supreme Court</option>
+      </select>
+      <select id="fWon" onchange="filterLib()">
+        <option value="">All Outcomes</option>
+        <option value="taxpayer">Taxpayer Won</option>
+        <option value="department">Department Won</option>
+        <option value="mixed">Mixed / Remanded</option>
+        <option value="pending">Pending / Interim</option>
+      </select>
+      <select id="fProv" onchange="filterLib()">
+        <option value="">All Provisions</option>
+        <option value="16(4)">Section 16(4)</option>
+        <option value="16(2)(c)">Section 16(2)(c)</option>
+        <option value="16(2)(aa)">Section 16(2)(aa)</option>
+        <option value="36(4)">Rule 36(4)</option>
+        <option value="16(5)">Section 16(5)</option>
+        <option value="73">Section 73</option>
+      </select>
+      <span class="count-label" id="countLbl">75 of 75 cases</span>
+    </div>
+    <div id="caseGrid"></div>
+  </div>
+</div>
+
+<!-- ══ RISK v2 ══ -->
+<div class="page" id="page-risk">
+  <div class="page-hero"><div class="page-hero-inner"><h1>Supplier Risk Monitor <span class="nav-v1" style="vertical-align:middle;">v1.0</span></h1><p>Track B early warning — now with GSTR-3B hard-locking flags and 2025 CGST amendment compliance alerts</p></div></div>
+  <div class="page-body">
+    <div class="hardlock-banner">
+      <div class="hl-title">🔒 GSTR-3B Hard-Locking Alert — 2025 CGST Amendments</div>
+      <div class="hl-body">
+        <span class="hl-badge">NEW</span><strong>Table 3.2 Auto-Lock (Nov 2025 onwards):</strong> Inter-state supply figures in GSTR-3B Table 3.2 are now auto-populated from GSTR-1/1A and are non-editable. Suppliers with incorrect GSTR-1 data cannot correct it in GSTR-3B — only GSTR-1A can fix this.<br/><br/>
+        <span class="hl-badge">NEW</span><strong>ITC Reclaim Block:</strong> The GST portal will now block GSTR-3B filing where the closing balance of the Electronic Credit Reversal and Re-claimed Statement is negative. Suppliers showing reversal-reclaim patterns are flagged below.<br/><br/>
+        <span class="hl-badge">GSTAT</span><strong>New Appeal Path:</strong> With GSTAT now operational under CGST Third Amendment Rules 2025, ITC denial orders that have exhausted the First Appellate Authority stage can now be appealed to GSTAT. Single-member bench available for cases below ₹50 lakh demand.
+      </div>
+    </div>
+    <div class="risk-summary">
+      <div class="risk-tile"><div class="risk-tile-num" style="color:var(--green-t);">8</div><div class="risk-tile-lbl">GREEN — Safe</div></div>
+      <div class="risk-tile"><div class="risk-tile-num" style="color:var(--amber-t);">4</div><div class="risk-tile-lbl">AMBER — Watch</div></div>
+      <div class="risk-tile"><div class="risk-tile-num" style="color:var(--red-t);">3</div><div class="risk-tile-lbl">RED — Alert</div></div>
+      <div class="risk-tile"><div class="risk-tile-num" style="color:var(--ink);">1</div><div class="risk-tile-lbl">BLACK — Critical</div></div>
+      <div class="risk-tile"><div class="risk-tile-num" style="color:var(--blue);font-size:22px;">₹24.6L</div><div class="risk-tile-lbl">ITC at Risk</div></div>
+      <div class="risk-tile"><div class="risk-tile-num" style="color:var(--red-t);font-size:20px;">3</div><div class="risk-tile-lbl">Hard-Lock Flags</div></div>
+    </div>
+    <div class="supplier-grid" id="supplierGrid"></div>
+    <div class="info-strip" style="margin-top:16px;">⚠️ Sample data for demonstration. In production, supplier data is pulled from GSTR-2B reports. All GSTINs are fictional. Hard-lock flags are based on filing pattern analysis per CBIC advisory dated 29.12.2024.</div>
+  </div>
+</div>
+
+
+
+<!-- ══ LEGISLATION ══ -->
+<div class="page" id="page-legislation">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <h1>Legislation Library</h1>
+      <p>Complete GST statutory framework — Central Acts, Rules, all 28 State GST Acts, and ITC quick reference. All linked to official government sources.</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="leg-tabs">
+      <button class="leg-tab active" onclick="switchLegTab('itc')">ITC Quick Reference</button>
+      <button class="leg-tab" onclick="switchLegTab('central')">Central Acts &amp; Rules</button>
+      <button class="leg-tab" onclick="switchLegTab('states')">State GST Acts</button>
+      <button class="leg-tab" onclick="switchLegTab('rules')">GST Rules</button>
+    </div>
+
+    <!-- ITC QUICK REFERENCE -->
+    <div class="leg-section active" id="leg-itc">
+      <div class="info-strip" style="margin-bottom:20px;">
+        ⚡ <strong>ITC Quick Reference</strong> — All sections of the CGST Act relevant to Input Tax Credit, with amendment history and plain-language summaries. Updated to include Finance Act 2024 amendments (Section 16(5) and 16(6)).
+      </div>
+      <table class="itc-table">
+        <thead><tr><th style="width:120px;">Section</th><th style="width:200px;">Heading</th><th>What It Says</th><th style="width:140px;">Amendment</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sec-num">Sec 16(1)</span></td><td>Basic ITC entitlement</td><td>Every registered person is entitled to take credit of input tax charged on any supply of goods or services used in the course of furtherance of business — subject to conditions in Section 16(2) to 16(4).</td><td>Original 2017</td></tr>
+          <tr><td><span class="sec-num">Sec 16(2)(a)</span></td><td>Valid tax invoice</td><td>ITC is available only if the registered person holds a valid tax invoice or debit note issued by a registered supplier, or such other tax paying document as may be prescribed.</td><td>Original 2017</td></tr>
+          <tr><td><span class="sec-num">Sec 16(2)(aa)</span></td><td>GSTR-2B condition</td><td>The details of invoice or debit note referred to in Section 16(2)(a) have been furnished by the supplier in their GSTR-1 and such details are communicated to the recipient in GSTR-2B. <span class="amend-flag">Inserted w.e.f. 01.01.2022</span></td><td>Finance Act 2021</td></tr>
+          <tr><td><span class="sec-num">Sec 16(2)(b)</span></td><td>Receipt of goods/services</td><td>The registered person has received the goods or services or both. Where goods are delivered to a third party on the direction of the registered person, it shall be deemed that the registered person has received the goods.</td><td>Original 2017</td></tr>
+          <tr><td><span class="sec-num">Sec 16(2)(c)</span></td><td>Tax paid to government</td><td>The tax charged in respect of the supply has been actually paid to the Government — either in cash or through utilisation of input tax credit admissible in respect of the supply. This is the "supplier default" condition — the most litigated in India.</td><td>Original 2017</td></tr>
+          <tr><td><span class="sec-num">Sec 16(2)(d)</span></td><td>Return filing condition</td><td>The registered person has furnished the return under Section 39 (GSTR-3B). Failure to file return extinguishes the right to claim ITC for that period.</td><td>Original 2017</td></tr>
+          <tr><td><span class="sec-num">Sec 16(3)</span></td><td>No double benefit</td><td>Where a registered person has claimed depreciation on the cost of capital goods including the GST component under the Income Tax Act 1961, ITC on such goods shall not be allowed.</td><td>Original 2017</td></tr>
+          <tr><td><span class="sec-num">Sec 16(4)</span></td><td>Time limit — THE CRITICAL PROVISION</td><td>A registered person shall NOT be entitled to take input tax credit in respect of any invoice or debit note after: (a) the due date of furnishing the return under Section 39 for the month of September following the end of financial year, OR (b) the date of furnishing the annual return — whichever is earlier. This is the most commonly litigated ITC denial provision in India.</td><td>Original 2017 — September amended to November</td></tr>
+          <tr><td><span class="sec-num">Sec 16(5)</span></td><td>Retrospective relief — Finance Act 2024</td><td>Notwithstanding Section 16(4), where the registered person has filed their GSTR-3B on or before 30th November 2021 for the financial years 2017-18, 2018-19, 2019-20 and 2020-21, the ITC in respect of any invoice or debit note shall be deemed to have been taken within the time limit prescribed under Section 16(4). <span class="amend-flag">Inserted retrospectively w.e.f. 01.07.2017 by Finance Act 2024</span></td><td>Finance (No.2) Act 2024 — S.118</td></tr>
+          <tr><td><span class="sec-num">Sec 16(6)</span></td><td>ITC after cancellation/restoration</td><td>Where registration is cancelled and subsequently restored, the registered person shall be entitled to take ITC in respect of invoices covering the period between cancellation and restoration, subject to conditions and restrictions. <span class="amend-flag">Inserted by Finance Act 2024</span></td><td>Finance (No.2) Act 2024</td></tr>
+          <tr><td><span class="sec-num">Sec 17(5)</span></td><td>Blocked credits</td><td>Notwithstanding anything contained in sub-section (1) of Section 16 and sub-section (1) of Section 18, input tax credit shall NOT be available in respect of: motor vehicles (subject to exceptions), food and beverages, outdoor catering, beauty treatment, health services, cosmetic surgery, membership of clubs, travel benefits to employees, works contract services for immovable property (subject to exceptions), goods or services for personal consumption, and goods lost, stolen, destroyed or written off.</td><td>Amended 2018, 2019</td></tr>
+          <tr><td><span class="sec-num">Sec 18</span></td><td>Availability of credit in special circumstances</td><td>Covers ITC entitlement on: conversion from composition to regular scheme, obtaining registration for first time, switchover from exempt to taxable supplies, and credit on capital goods. Also covers reversal of ITC on supply becoming exempt or where registration is cancelled.</td><td>Original 2017</td></tr>
+          <tr><td><span class="sec-num">Rule 36(4)</span></td><td>Provisional ITC restriction — CGST Rules</td><td>Input tax credit to be availed by a registered person in respect of invoices or debit notes, the details of which have not been uploaded by the suppliers, shall not exceed 20% of the eligible credit available in respect of invoices the details of which have been uploaded. This percentage was 10% before 01.01.2022. From 01.01.2022, NO provisional ITC is available — only GSTR-2B reflected amounts are eligible. <span class="amend-flag">Inserted 09.10.2019 — amended 29.12.2021</span></td><td>Notf 49/2019, Notf 40/2021</td></tr>
+          <tr><td><span class="sec-num">Sec 73</span></td><td>Show Cause Notice — non-fraud cases</td><td>Where it appears to the proper officer that any tax has not been paid or short paid or erroneously refunded, or where ITC has been wrongly availed or utilised — the proper officer shall serve a Show Cause Notice before making any demand. The SCN is mandatory. Time limit: SCN to be issued within 3 years of the due date of filing the annual return for the year to which the demand relates. Order to be passed within 3 years of the SCN. Demand without SCN is void ab initio.</td><td>Original 2017 — Sec 128A inserted 2024</td></tr>
+          <tr><td><span class="sec-num">Sec 75(4)</span></td><td>Mandatory personal hearing</td><td>An opportunity of hearing shall be granted where a request is received in writing from the person to whom notice has been issued to show cause under Section 73. Denial of personal hearing when requested is a procedural defect that independently renders the order liable to be set aside.</td><td>Original 2017</td></tr>
+          <tr><td><span class="sec-num">Sec 128A</span></td><td>Waiver of interest/penalty — special cases</td><td>The Government may, by notification, waive payment of interest under Section 50 or penalty under Section 73 in respect of demands for the period July 2017 to March 2020, subject to specified conditions. Inserted to provide relief for early GST period compliance issues. <span class="amend-flag">Inserted by Finance Act 2024</span></td><td>Finance (No.2) Act 2024</td></tr>
+        </tbody>
+      </table>
+      <div class="act-links">
+        <a href="https://cbic-gst.gov.in/gst-acts.html" target="_blank" class="act-link-btn alb-primary">📖 View Full CGST Act — Official CBIC</a>
+        <a href="https://www.indiacode.nic.in/handle/123456789/15689" target="_blank" class="act-link-btn alb-secondary">India Code — CGST Act</a>
+      </div>
+    </div>
+
+    <!-- CENTRAL ACTS -->
+    <div class="leg-section" id="leg-central">
+      <div class="act-grid">
+        <div class="act-card">
+          <div class="act-card-head">
+            <div><div class="act-title">Central Goods and Services Tax Act, 2017</div><div class="act-short">CGST Act — No. 12 of 2017 — As amended by Finance Act 2024</div></div>
+            <span class="act-badge ab-amended">Amended 2024</span>
+          </div>
+          <div class="act-body">
+            <div class="act-desc">The principal legislation governing levy, collection, and administration of GST on intra-state supply of goods and services. Contains all ITC provisions (Sections 16–21), assessment, audit, demands, appeals, and penalties. Last major amendment: Finance (No.2) Act 2024 inserting Sections 16(5), 16(6), 74A, 128A.</div>
+            <div class="act-sections">
+              <div class="act-sec"><span class="act-sec-num">Sections 16–21</span><span class="act-sec-name">Input Tax Credit</span></div>
+              <div class="act-sec"><span class="act-sec-num">Sections 73–84</span><span class="act-sec-name">Demands and Recovery</span></div>
+              <div class="act-sec"><span class="act-sec-num">Sections 107–121</span><span class="act-sec-name">Appeals and Revision</span></div>
+              <div class="act-sec"><span class="act-sec-num">Section 128A</span><span class="act-sec-name">Interest/Penalty Waiver (2024)</span></div>
+            </div>
+            <div class="act-links">
+              <a href="https://cbic-gst.gov.in/gst-acts.html" target="_blank" class="act-link-btn alb-primary">📖 Official CBIC Text</a>
+              <a href="https://www.indiacode.nic.in/handle/123456789/15689" target="_blank" class="act-link-btn alb-secondary">India Code</a>
+              <a href="https://gstcouncil.gov.in/cgst-act" target="_blank" class="act-link-btn alb-secondary">GST Council</a>
+            </div>
+          </div>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <div><div class="act-title">Integrated Goods and Services Tax Act, 2017</div><div class="act-short">IGST Act — No. 13 of 2017</div></div>
+            <span class="act-badge ab-central">Central Act</span>
+          </div>
+          <div class="act-body">
+            <div class="act-desc">Governs levy and collection of GST on inter-state supply of goods and services and on imports. The IGST collected on imports is distributed between Centre and States. ITC of IGST can be used to pay CGST, SGST, or IGST in any order.</div>
+            <div class="act-sections">
+              <div class="act-sec"><span class="act-sec-num">Section 5</span><span class="act-sec-name">Levy and Collection of IGST</span></div>
+              <div class="act-sec"><span class="act-sec-num">Section 12–13</span><span class="act-sec-name">Place of Supply Rules</span></div>
+              <div class="act-sec"><span class="act-sec-num">Section 16</span><span class="act-sec-name">Zero-rated Supplies</span></div>
+            </div>
+            <div class="act-links">
+              <a href="https://cbic-gst.gov.in/gst-acts.html" target="_blank" class="act-link-btn alb-primary">📖 Official CBIC Text</a>
+              <a href="https://gstcouncil.gov.in/igst-act" target="_blank" class="act-link-btn alb-secondary">GST Council</a>
+            </div>
+          </div>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <div><div class="act-title">Union Territory Goods and Services Tax Act, 2017</div><div class="act-short">UTGST Act — No. 14 of 2017</div></div>
+            <span class="act-badge ab-central">Central Act</span>
+          </div>
+          <div class="act-body">
+            <div class="act-desc">Applies to Union Territories without legislature — Andaman and Nicobar Islands, Chandigarh, Dadra and Nagar Haveli, Daman and Diu, Lakshadweep. Mirrors the CGST Act for UTGST purposes. UTs with legislature (Delhi, Puducherry, Jammu & Kashmir) have their own SGST Acts.</div>
+            <div class="act-sections">
+              <div class="act-sec"><span class="act-sec-num">Section 9</span><span class="act-sec-name">ITC for UTGST purposes</span></div>
+            </div>
+            <div class="act-links">
+              <a href="https://cbic-gst.gov.in/gst-acts.html" target="_blank" class="act-link-btn alb-primary">📖 Official CBIC Text</a>
+            </div>
+          </div>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <div><div class="act-title">GST (Compensation to States) Act, 2017</div><div class="act-short">Compensation Cess Act — No. 15 of 2017</div></div>
+            <span class="act-badge ab-central">Central Act</span>
+          </div>
+          <div class="act-body">
+            <div class="act-desc">Provides for compensation to States for revenue loss arising from GST implementation for a period of five years. The GST Compensation Cess is levied on luxury and demerit goods. ITC of Compensation Cess is available only for payment of Compensation Cess — not for CGST/SGST/IGST.</div>
+            <div class="act-sections">
+              <div class="act-sec"><span class="act-sec-num">Section 8</span><span class="act-sec-name">ITC of Compensation Cess</span></div>
+            </div>
+            <div class="act-links">
+              <a href="https://cbic-gst.gov.in/gst-acts.html" target="_blank" class="act-link-btn alb-primary">📖 Official CBIC Text</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATE ACTS -->
+    <div class="leg-section" id="leg-states">
+      <div class="info-strip" style="margin-bottom:16px;">
+        📋 All 28 State GST Acts mirror the CGST Act — Sections 16(4), 16(5), Rule 36(4), and Section 73 apply identically under State GST law. Click "Official Act" to access each state's current legislation from the GST Council.
+      </div>
+      <div style="overflow-x:auto;">
+      <table class="state-table">
+        <thead><tr><th>State Code</th><th>State / UT</th><th>SGST Act</th><th>Key Fact</th><th>Official Link</th></tr></thead>
+        <tbody id="stateTableBody"></tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- RULES -->
+    <div class="leg-section" id="leg-rules">
+      <div class="act-grid">
+        <div class="act-card">
+          <div class="act-card-head">
+            <div><div class="act-title">Central Goods and Services Tax Rules, 2017</div><div class="act-short">CGST Rules — As amended by Third Amendment Rules 2025</div></div>
+            <span class="act-badge ab-amended">Amended 2025</span>
+          </div>
+          <div class="act-body">
+            <div class="act-desc">138 rules prescribing procedure for registration, returns, ITC, refunds, assessments, and appeals. The most important rules for ITC purposes are Rule 36 (documentary requirements), Rule 36(4) (provisional ITC restriction), Rule 42 and 43 (ITC apportionment), and Rule 86B (ITC restriction on cash payment).</div>
+            <div class="act-sections">
+              <div class="act-sec"><span class="act-sec-num">Rule 36</span><span class="act-sec-name">Documentary requirements for ITC</span></div>
+              <div class="act-sec"><span class="act-sec-num">Rule 36(4)</span><span class="act-sec-name">GSTR-2B mismatch restriction</span></div>
+              <div class="act-sec"><span class="act-sec-num">Rules 42–43</span><span class="act-sec-name">ITC reversal apportionment</span></div>
+              <div class="act-sec"><span class="act-sec-num">Rule 86B</span><span class="act-sec-name">1% cash payment restriction</span></div>
+              <div class="act-sec"><span class="act-sec-num">Rule 142</span><span class="act-sec-name">SCN procedure — DRC-01</span></div>
+            </div>
+            <div class="act-links">
+              <a href="https://gstcouncil.gov.in/cgst-rules" target="_blank" class="act-link-btn alb-primary">📖 Official GST Council</a>
+              <a href="https://cbic-gst.gov.in/gst-acts.html" target="_blank" class="act-link-btn alb-secondary">CBIC Text</a>
+            </div>
+          </div>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <div><div class="act-title">Integrated Goods and Services Tax Rules, 2017</div><div class="act-short">IGST Rules</div></div>
+            <span class="act-badge ab-rules">Rules</span>
+          </div>
+          <div class="act-body">
+            <div class="act-desc">Prescribe the procedure for determining place of supply, cross-utilisation of IGST credit, zero-rated supply refunds, and inter-state ITC transfers. Critical for businesses making inter-state supplies where ITC mismatch can arise from incorrect place of supply determination.</div>
+            <div class="act-sections">
+              <div class="act-sec"><span class="act-sec-num">Rules 1–4</span><span class="act-sec-name">Place of Supply determination</span></div>
+            </div>
+            <div class="act-links">
+              <a href="https://cbic-gst.gov.in/gst-acts.html" target="_blank" class="act-link-btn alb-primary">📖 Official CBIC Text</a>
+            </div>
+          </div>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <div><div class="act-title">CGST (Third Amendment) Rules, 2025</div><div class="act-short">Latest Amendment — GSTAT Procedure Rules</div></div>
+            <span class="act-badge ab-amended">2025 New</span>
+          </div>
+          <div class="act-body">
+            <div class="act-desc">Introduces new forms GST APL-02A and GST APL-04A for GSTAT proceedings. Establishes procedure for single-member bench hearings for cases not involving a question of law where the cumulative demand does not exceed Rs. 50 lakh. Also introduces hard-validation rules for GSTR-3B Table 3.2 auto-population from GSTR-1.</div>
+            <div class="act-sections">
+              <div class="act-sec"><span class="act-sec-num">New Rule</span><span class="act-sec-name">GSTAT single-member bench</span></div>
+              <div class="act-sec"><span class="act-sec-num">Table 3.2</span><span class="act-sec-name">GSTR-3B hard-lock from GSTR-1</span></div>
+            </div>
+            <div class="act-links">
+              <a href="https://cbic-gst.gov.in/" target="_blank" class="act-link-btn alb-primary">📖 CBIC Notification</a>
+            </div>
+          </div>
+        </div>
+        <div class="act-card">
+          <div class="act-card-head">
+            <div><div class="act-title">State GST Rules</div><div class="act-short">All States — Mirror CGST Rules</div></div>
+            <span class="act-badge ab-state">State Rules</span>
+          </div>
+          <div class="act-body">
+            <div class="act-desc">Each state has enacted its own GST Rules mirroring the CGST Rules. Rule 36(4) applies identically under all State GST Rules. State-specific variations exist primarily in procedural rules for hearings, service of notices, and local forms. For ITC purposes, the substantive rules are identical across all states.</div>
+            <div class="act-sections">
+              <div class="act-sec"><span class="act-sec-num">State Rule 36(4)</span><span class="act-sec-name">Identical to CGST Rule 36(4)</span></div>
+              <div class="act-sec"><span class="act-sec-num">State Rule 142</span><span class="act-sec-name">SCN procedure — DRC-01</span></div>
+            </div>
+            <div class="act-links">
+              <a href="https://gstcouncil.gov.in/state-specific-gst" target="_blank" class="act-link-btn alb-primary">📖 GST Council — State Links</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-strip" style="margin-top:20px;">
+      ⚠️ The statutory text displayed here is for reference only. Always verify against the official Gazette notification for legal proceedings. The Acts as published in the Official Gazette of the Government of India have the force of law.
+    </div>
+  </div>
+</div>
+
+<!-- ══ CIRCULARS ══ -->
+<div class="page" id="page-circulars">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <h1>CBIC Circulars <span class="nav-v1" style="vertical-align:middle;">ITC</span></h1>
+      <p>All CBIC circulars relevant to GST Input Tax Credit — binding on adjudicating authorities. Click any circular to expand the key instructions and defence text.</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="lib-controls" style="margin-bottom:16px;">
+      <div class="search-box"><span class="search-icon">🔍</span><input type="text" id="circSrch" placeholder="Search by number, subject, or provision..." oninput="filterCirculars()"/></div>
+      <select id="circScope" onchange="filterCirculars()">
+        <option value="">All Topics</option>
+        <option value="mismatch">GSTR-2A/2B Mismatch</option>
+        <option value="timebar">Time Bar — Section 16(4)</option>
+        <option value="procedure">SCN Procedure</option>
+        <option value="reversal">ITC Reversal</option>
+        <option value="general">General ITC</option>
+      </select>
+      <span class="count-label" id="circCount">12 of 12 circulars</span>
+    </div>
+    <div class="circ-grid" id="circGrid"></div>
+    <div class="info-strip" style="margin-top:16px;">
+      ⚠️ All circulars listed here are binding on GST officers under Article 265 of the Constitution and the CBIC's administrative authority. An adjudicating officer who ignores a binding CBIC circular acts without jurisdiction — this is an independent ground to challenge any demand order.
+    </div>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div class="page" id="page-about">
+  <div class="page-hero"><div class="page-hero-inner"><h1>About Narentis</h1><p>Truth in every tax credit — India's first AI-powered GST ITC denial defence platform</p></div></div>
+  <div class="page-body">
+    <div class="about-grid">
+      <div class="about-card dark-card full-col"><h3>The Problem Narentis Solves</h3><p>Thousands of Indian businesses lose legitimate GST Input Tax Credit every year — not because they did anything wrong, but because suppliers failed to file returns or because a statutory deadline was missed. Narentis catches the risk before it happens, and builds the legal case when it does — classifying every notice as Category 1 (valid), Category 2 (contestable), Category 3 (likely illegal), or Procedural Defect.</p></div>
+      <div class="about-card dark-card"><div class="team-ava">KB</div><div class="team-name">Kaustubh Balaji</div><div class="team-role">FOUNDER & LEGAL ARCHITECT</div><p>B.Com LLB (Hons.) and Qualified Company Secretary. Legal background spanning internships at the Supreme Court of India, Madras High Court, and various law firms. Built Narentis to solve a real problem faced by thousands of Indian businesses losing legitimate ITC every year.</p></div>
+      <div class="about-card"><h3>Legal Foundation</h3><ul><li>Section 16(4) CGST Act — Time bar denial</li><li>Section 16(2)(c) — Supplier non-payment</li><li>Section 16(2)(aa) — GSTR-2B linkage</li><li>Rule 36(4) CGST Rules — Mismatch restriction</li><li>Section 16(5) — Finance Act 2024 relief</li><li>Section 73 — SCN validity and procedure</li><li>CBIC Circular 183/15/2022 — Mandatory procedure</li><li>GSTR-3B Hard-Locking — 2025 amendments</li><li>GSTAT — CGST Third Amendment Rules 2025</li></ul></div>
+      <div class="about-card"><h3>Dataset & Validation</h3><ul><li>75 verified HC / SC judgments</li><li>13 courts covered across India</li><li>1 Supreme Court judgment</li><li>Master Prompt: 10/10 validation accuracy</li><li>Zero hallucinated citations</li><li>Defence paragraphs extracted per case</li><li>Court hierarchy: SC → HC → GSTAT → AAR</li><li>Tree Branch Tags assigned to all 75 cases</li></ul></div>
+      <div class="about-card"><h3>Commercial Roadmap</h3><div class="pricing-row"><span class="price-tier">CA Firms (Starter)</span><div><div class="price-amt">₹5,000/mo</div><div class="price-note">Up to 50 notices/month</div></div></div><div class="pricing-row"><span class="price-tier">MSME (Growth)</span><div><div class="price-amt">₹2,000/mo</div><div class="price-note">Supplier risk dashboard</div></div></div><div class="pricing-row"><span class="price-tier">Enterprise</span><div><div class="price-amt">₹2L+/yr</div><div class="price-note">White-label + API</div></div></div><div style="font-size:12px;color:var(--ink4);margin-top:12px;">Currently in early access. Commercial launch coming soon.</div></div>
+      <div class="about-card"><h3>Why Narentis Exists</h3><p style="margin-bottom:12px;">Narentis was built from firsthand experience of how GST ITC denial is breaking Indian businesses — especially MSMEs who cannot afford the legal fees to fight every notice. The system is designed to level the playing field.</p><p>Built on 75 verified court judgments, a validated AI decision engine, and a zero-tolerance policy for hallucinated case citations — because in legal work, accuracy is everything.</p><div class="disc-box">⚠️ Not legal advice. All outputs require review by a qualified GST practitioner before any action is taken.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── NAV ──────────────────────────────────────────────────────
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.getElementById('nav-'+p).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(p==='library')renderLib();
+  if(p==='circulars')renderCirculars();
+  if(p==='legislation')renderLegislation();
+  if(p==='risk')renderRisk();
+}
+
+// ── COURT TIER ───────────────────────────────────────────────
+function getCourtTier(court){
+  if(!court) return {tier:'High Court',label:'HC',cls:'tier-hc'};
+  if(court.includes('Supreme')) return {tier:'Supreme Court',label:'SC',cls:'tier-sc'};
+  if(court.includes('GSTAT')||court.includes('Tribunal')) return {tier:'GSTAT',label:'GSTAT',cls:'tier-gstat'};
+  if(court.includes('AAR')||court.includes('Advance Ruling')) return {tier:'AAR',label:'AAR',cls:'tier-aar'};
+  return {tier:'High Court',label:'HC',cls:'tier-hc'};
+}
+
+// ── 75 CASES DATABASE ────────────────────────────────────────
+const CASES=[
+  {id:1,name:"M/s High Tech Ecogreen Contractors LLP v. Joint Director, DGGI",court:"Gauhati High Court",date:"25.02.2025",prov:"Rule 36(4)",won:"Department",cat:"B",reason:"Section 164 CGST Act provides power for rules; Rule 36(4) valid without Section 43A notification; taxpayer cannot challenge validity while citing same provision to claim ITC.",defence:"Section 164 of CGST Act provides for appropriate rules to be inserted, and 36(4) provides eligibility of ITC availment but 43A(4) provides the procedure to furnish return which was omitted by FA 2022. Taxpayer cannot challenge validity while citing the same provision to claim ITC.",pdf:""},
+  {id:2,name:"Bharat Aluminium Company Ltd. v. Union of India",court:"Chhattisgarh High Court",date:"24.06.2021",prov:"Rule 36(4)",won:"Taxpayer",cat:"A",reason:"Rule 36(4) cannot be applied retroactively; GST Council guidance mandates recovery from sellers first.",defence:"Rule 36(4) CGST Rules notified post the mismatch period cannot deny ITC retroactively without seller verification. The GST Council Press Release dated 04.05.2018 establishes that mismatches do not trigger automatic buyer ITC reversal — recovery should target sellers first. A purchasing dealer who paid GST through banking channels and holds valid invoices cannot be denied ITC on grounds of supplier non-compliance.",pdf:""},
+  {id:3,name:"Nahasshukoor v. Assistant Commissioner",court:"Kerala High Court",date:"03.11.2023",prov:"Rule 36(4) / Sec 16(2)(c)",won:"Department",cat:"A",reason:"Rule 36(4) and Section 16(2)(c) constitutionally valid; ITC is statutory concession not absolute right.",defence:"The Kerala High Court upheld Section 16(2)(c) and Rule 36(4) as constitutionally valid — ITC is a statutory concession, not an absolute right, and can be subject to conditions including the requirement that suppliers pay collected tax to the government. Articles 14 and 19(1)(g) challenges were rejected as there is no discrimination between buyers and sellers in how the statutory scheme operates.",pdf:""},
+  {id:4,name:"Rubicon Associates v. State Tax Officer",court:"Madras High Court",date:"06.01.2026",prov:"Rule 36(4)",won:"Taxpayer",cat:"A",reason:"Ex-parte order quashed; non-participation post-SCN does not abrogate audi alteram partem right.",defence:"Mere non-participation in hearings post-SCN does not abrogate the petitioner's audi alteram partem right. Even where a taxpayer fails to appear after receiving notices, the adjudicating authority must adjudicate on merits and cannot pass an adverse ex-parte order based solely on non-attendance. The right to be heard is a fundamental principle of natural justice that cannot be waived by administrative convenience.",pdf:""},
+  {id:5,name:"L&T Geostructure LLP v. Union of India",court:"Madras High Court",date:"09.05.2025",prov:"Rule 36(4)",won:"Department",cat:"B",reason:"Rule 36(4) derives power from Sections 16(1), 41 & 164; beneficial regulation allowing some ITC.",defence:"Rule 36(4) derives statutory power from Sections 16(1), 41 and 164 of the CGST Act. It is a beneficial regulation that allows partial ITC rather than denying it entirely as would result from strict application of Section 16(2)(c). The provision is regulatory in nature aimed at preventing fraud and ensuring tax compliance in the supply chain.",pdf:""},
+  {id:6,name:"M/s Baby Marine (Eastern) Exports v. Union of India",court:"Madras High Court",date:"06.08.2025",prov:"Rule 36(4)",won:"Department",cat:"B",reason:"Taxation statutes carry presumption of constitutionality; manifestly arbitrary threshold not met.",defence:"Taxation statutes carry a presumption of constitutionality. A provision can be struck down only if it is manifestly arbitrary, irrational, or discriminatory. The mere fact that a purchasing dealer is required to ensure supplier compliance does not make the provision arbitrary — the legislature has the power to impose conditions on statutory concessions including ITC.",pdf:""},
+  {id:7,name:"M/s Abhimaani Structures v. Superintendent of Central Tax",court:"Karnataka High Court",date:"28.11.2025",prov:"Rule 36(4)",won:"Taxpayer",cat:"C",reason:"ITC demand confirmed on discrepancy alone without applying Circular 183/15/2022-GST.",defence:"The adjudicating authority confirmed the ITC demand solely on the basis of the GSTR-3B vs GSTR-2A discrepancy without applying the procedure mandated by Circular No. 183/15/2022-GST. The Court held that this was impermissible — the authority was bound to follow the prescribed Circular procedure for discrepancy cases before confirming any demand. The order was set aside on this ground alone.",pdf:""},
+  {id:8,name:"Guru Mahesh Medicals v. Assistant Commissioner",court:"Karnataka High Court",date:"08.10.2025",prov:"Rule 36(4)",won:"Taxpayer",cat:"C",reason:"Circular 183/15/2022 binding suo motu on all pending adjudication proceedings for FY 2017-18.",defence:"CBIC Circular No. 183/15/2022-GST dated 27.12.2022 is binding on all pending adjudication proceedings for FY 2017-18 and FY 2018-19. An adjudicating authority cannot confirm an ITC demand solely on the ground of a GSTR-3B vs GSTR-2A discrepancy — the Circular prescribes a mandatory procedure that the authority was required to follow suo motu, irrespective of whether the petitioner raised it. The order was set aside.",pdf:""},
+  {id:9,name:"Karibasappa Durgappa Hadagali v. GST Authorities",court:"Karnataka High Court",date:"24.11.2025",prov:"Rule 36(4)",won:"Taxpayer",cat:"C",reason:"Wrong GSTIN was inadvertent clerical error; Circular 183 procedure applicable.",defence:"The Court examined the invoices on record and found that supplies were genuinely made. The wrong GSTIN appearing on the invoices was due to a bonafide clerical error and not due to any fraudulent intent. Revenue must verify the substance of transactions and not mechanically deny ITC on technical errors. Circular 183 procedure was applicable and must be followed before any demand is confirmed.",pdf:""},
+  {id:10,name:"R.S. Marketing and Logistics Pvt. Ltd. v. Commercial Tax Officer",court:"Karnataka High Court",date:"05.06.2024",prov:"Rule 36(4)",won:"Taxpayer",cat:"C",reason:"ITC disallowed solely on discrepancy without independent verification; Circular 183 not followed.",defence:"The Court made three decisive observations: (1) The ITC was disallowed solely on the GSTR-3B vs GSTR-2A discrepancy — there was no independent assessment of whether the supplies were genuine; (2) Circular No. 183/15/2022-GST mandated a specific procedure before any demand could be confirmed; (3) The adjudicating authority was bound by the Circular irrespective of whether the taxpayer raised it. The order was remanded for fresh consideration.",pdf:""},
+  {id:11,name:"Amit Jasrasaria v. Union of India",court:"Gauhati High Court",date:"03.10.2024",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"Finance Act 2024 inserted Section 16(5) retrospectively; FY 2018-19 returns filed before 30.11.2021 entitled to ITC.",defence:"The challenge under Section 16(4) became infructuous in view of Finance (No.2) Act 2024 inserting Section 16(5) with retrospective effect from 01.07.2017. Since the petitioner's returns for FY 2018-19 were filed before 30.11.2021, the petitioner is entitled to ITC under Section 16(5) notwithstanding the original Section 16(4) time bar. The impugned order dated 06.03.2024 was quashed.",pdf:""},
+  {id:12,name:"BBA Infrastructure Ltd. v. Sr. Joint Commissioner of State Tax",court:"Calcutta High Court",date:"13.12.2023",prov:"Section 16(4)",won:"Department",cat:"",reason:"ITC is concession subject to conditions not a right; Section 16(2) does not override Section 16(4).",defence:"ITC is a concession/benefit subject to conditions and is not a matter of right. The non-obstante clause in Section 16(2) does not override Section 16(4) — both provisions are complementary restrictions that operate together. Section 16(4) imposes a mandatory time limit and ITC cannot be availed after the statutory deadline irrespective of whether the taxpayer otherwise satisfies Section 16(2) conditions.",pdf:""},
+  {id:13,name:"Challiyil Vijayan Shan v. Assistant Commissioner",court:"Kerala High Court",date:"04.06.2024",prov:"Section 16(4)",won:"Mixed",cat:"",reason:"Constitutional validity upheld; partial relief granted for bona fide cases; September amended to 30th November.",defence:"Constitutional validity of Sections 16(2)(c) and 16(4) upheld. However partial relief was granted: the amendment substituting September with 30th November in Section 16(4) applies retrospectively from 01.07.2017. Petitioners who filed GSTR-3B by 30.11.2021 for FYs 2017-21 are eligible for ITC. Bona fide taxpayers who were unaware of technical requirements were given equitable consideration.",pdf:""},
+  {id:14,name:"Gobinda Construction v. Union of India",court:"Patna High Court",date:"08.09.2023",prov:"Section 16(4)",won:"Department",cat:"",reason:"Section 16(4) constitutionally valid; ITC is concession; right under Section 16(1) vests only on fulfilling all conditions.",defence:"All writ petitions dismissed. Section 16(4) is constitutionally valid and not violative of Article 14 or Article 300A. ITC is a concession and not an unconditional vested right — the right under Section 16(1) becomes vested only on fulfilling all conditions prescribed in Section 16 including the time limit. The provision is a mandatory condition precedent.",pdf:""},
+  {id:15,name:"M/s Anthikad Service Co-operative v. Union of India",court:"Kerala High Court",date:"21.08.2025",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"Section 16(5) overrides Section 16(4) for FY 2017-18 to 2020-21; returns filed before 30.11.2021 entitled to ITC.",defence:"Section 16(5) overrides Section 16(4) for FY 2017-18 to 2020-21. Since petitioner filed returns before 30.11.2021, it is entitled to ITC. The Section 73 proceedings already completed do not extinguish the statutory benefit under Section 16(5) — the rejection order was quashed and the petitioner's ITC entitlement was restored.",pdf:""},
+  {id:16,name:"M/s Baba's Beans v. Union of India",court:"Delhi High Court",date:"09.07.2024",prov:"Section 16(4)",won:"Pending",cat:"",reason:"Challenge to ITC denial based on limitation requires judicial examination; notice issued; matter pending.",defence:"The Court found that the challenge to denial of ITC based on limitation under Section 16(4) requires judicial examination — the interaction between Section 16(4) statutory limitation and GST Council recommendations on deadline extensions raises questions that merit full consideration on merits.",pdf:""},
+  {id:17,name:"M/s Mall of Joy Pvt. Ltd. v. Union of India",court:"Kerala High Court",date:"04.06.2024",prov:"Section 16(4)",won:"Mixed",cat:"",reason:"Section 16(4) requires examination of factual compliance; matter remanded for reconsideration.",defence:"The application of Section 16(4) requires examination of factual compliance with statutory conditions and statutory interpretation of the deadline provisions. The Court directed reconsideration by the proper officer to examine whether all conditions were met before applying the time bar.",pdf:""},
+  {id:18,name:"M/s R.K. Modi and Sons v. Union of India",court:"Madhya Pradesh High Court",date:"20.04.2022",prov:"Section 16(4)",won:"Department",cat:"",reason:"Section 16(4) prescribes mandatory statutory bar; delayed filing does not revive entitlement.",defence:"Section 16(4) prescribes a mandatory statutory bar on availment of ITC after the stipulated date. Delayed filing of returns — even with payment of late fee — does not revive the entitlement to ITC that has lapsed under the time limitation.",pdf:""},
+  {id:19,name:"M/s Jyotirmoyee Drugs v. Union of India",court:"Gauhati High Court",date:"27.06.2024",prov:"Section 16(4)",won:"Pending",cat:"",reason:"Interaction between GST Council extensions and Section 16(4) requires judicial consideration; interim relief granted.",defence:"The interaction between GST Council recommended extensions and the statutory limitation under Section 16(4) requires full judicial consideration. The Court granted interim protection to the taxpayer pending final determination of this legal question.",pdf:""},
+  {id:20,name:"Puthanangadi Industries v. State of Kerala",court:"Kerala High Court",date:"04.06.2024",prov:"Section 16(4)",won:"Department",cat:"",reason:"ITC statutory concession subject to Section 16(4) limitation; strict interpretation applied.",defence:"ITC is a statutory concession subject to conditions and restrictions including the limitation prescribed under Section 16(4). The concession is subject to the legislature's power to prescribe conditions, and the time limit is a valid exercise of that power.",pdf:""},
+  {id:21,name:"Salahudheen v. State Tax Officer",court:"Kerala High Court",date:"04.06.2024",prov:"Section 16(4)",won:"Department",cat:"",reason:"ITC subject to time limits; Section 16(2)(c) requires actual payment to government treasury.",defence:"ITC is a statutory concession subject to time limits. Section 16(2)(c) is a valid condition requiring actual payment of tax to the government treasury before a set-off can be granted. The time limits under Section 16(4) are necessary for budgetary certainty and are constitutionally valid.",pdf:""},
+  {id:22,name:"Ultraprime Cements India Pvt. Ltd. v. CBIC",court:"Kerala High Court",date:"04.06.2024",prov:"Section 16(4)",won:"Department",cat:"",reason:"Legislature has power to abridge ITC concessions; actual payment into treasury is prerequisite.",defence:"The legislature has the power to abridge or curtail concessions like ITC. Actual payment into the government treasury is a prerequisite for a set-off claim. The conditions prescribed in Section 16 are not onerous and do not violate the Constitution.",pdf:""},
+  {id:23,name:"Yohanan Thyparampil Easow v. State Tax Officer",court:"Kerala High Court",date:"04.06.2024",prov:"Section 16(4)",won:"Department",cat:"",reason:"Courts cannot re-write statutory fiscal provisions; budgetary certainty requires strict time limits.",defence:"Courts cannot re-write statutory fiscal provisions to accommodate individual hardship. Budgetary allocation requires certainty in tax collection, justifying strict time limits. Denial of credit is valid where the treasury never received the tax due to supplier default.",pdf:""},
+  {id:24,name:"Anand Steel v. Union of India",court:"Madhya Pradesh High Court",date:"22.11.2024",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"Finance Act 2024 proposed Section 16(5) lifting time limit; relief granted on amendment basis.",defence:"The Central Government proposed to amend Section 16 by introducing Section 118 of the Finance Act 2024 — thereby lifting the time limit condition for specific periods. The Court granted relief on the basis of this proposed amendment without needing to examine the constitutional validity of Section 16(4).",pdf:""},
+  {id:25,name:"Dys Impex Pvt. Ltd. v. Asst. Commissioner of Revenue",court:"Calcutta High Court",date:"25.06.2025",prov:"Section 16(4)",won:"Mixed",cat:"",reason:"Section 16(5) inserted with retrospective effect from July 1, 2017; matter remanded for re-adjudication.",defence:"Section 16(5) was inserted into the statute book with retrospective effect from July 1, 2017. The matter was remanded to the proper officer to re-adjudicate the ITC claim in light of the new statutory provision — the original orders were set aside as they were passed without the benefit of this legislative development.",pdf:""},
+  {id:26,name:"M/s Abdul Parvej Khan Contractor v. Union of India",court:"Madhya Pradesh High Court",date:"22.11.2024",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"Finance Act 2024 inserted Section 16(5) retrospectively from 01.07.2017 relaxing time limit for FY 2017-21.",defence:"Finance Act 2024 Section 118 inserted Section 16(5) retrospectively from 01.07.2017 relaxing the time limit for FY 2017-21. The Court granted relief on the amendment basis without adjudicating the constitutional validity of Section 16(4). The double penalty principle was upheld — paying late fee already penalises the taxpayer; further denial of ITC would be excessive.",pdf:""},
+  {id:27,name:"M/s Selva Vilas Jewellery v. Superintendent of GST",court:"Madras High Court",date:"07.01.2026",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"Section 16(5) inserted via Finance Act 2024; ITC deadline extended to 30.11.2021 for FY 2017-21.",defence:"This case is covered by the common order dated 17.10.2024 in W.P.Nos.25081/2023 batch. Section 16(5) inserted via Finance (No.2) Act 2024 with retrospective effect from 01.07.2017 extended the ITC deadline to 30.11.2021 for FYs 2017-21. The impugned order was quashed.",pdf:""},
+  {id:28,name:"M/s Tara Fertilizers v. State of Bihar",court:"Patna High Court",date:"09.08.2023",prov:"Section 16(4)",won:"Department",cat:"",reason:"Section 16(4) constitutionally valid; ITC concession not unconditional; mandatory condition precedent.",defence:"Section 16(4) is constitutionally valid. ITC is a concession/benefit under the statutory scheme and not an unconditional vested right — it can be availed only upon fulfilling all prescribed conditions including the time limit. Section 16(4) is a mandatory condition precedent and its non-fulfilment extinguishes the right to claim ITC.",pdf:""},
+  {id:29,name:"Manoj Kumar Singh v. Principal Commissioner",court:"Jharkhand High Court",date:"21.01.2026",prov:"Section 16(4)",won:"Mixed",cat:"",reason:"Section 16(5) inserted retrospectively covering FY 2017-21; matter remanded.",defence:"Section 16(5) was inserted retrospectively via Finance Act 2024 covering FY 2017-21 with a revised deadline of 30.11.2021. CBIC Circular 237/31/2024 was issued for implementation. The appellate order was set aside and remitted for fresh decision considering Section 16(5).",pdf:""},
+  {id:30,name:"P. Prakash Construction v. Union of India",court:"Patna High Court",date:"08.09.2023",prov:"Section 16(4)",won:"Department",cat:"",reason:"Section 16(4) is mandatory; ITC concession depends on statutory conditions; not inconsistent with Article 14.",defence:"Section 16(4) is a mandatory provision. The concession of ITC is entirely dependent on fulfillment of statutory conditions. Section 16(4) is not inconsistent with Article 14 or any fundamental right — the legislature has the power to prescribe conditions for statutory benefits.",pdf:""},
+  {id:31,name:"Pazhassi Motors v. State of Kerala",court:"Kerala High Court",date:"04.12.2025",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"Prior adverse decision on Section 16(4) does not prevent seeking Section 16(5) benefit.",defence:"A prior adverse decision on Section 16(4) does not prevent a taxpayer from seeking the benefit of a subsequent legislative amendment in Section 16(5). Section 16(5) creates a fresh cause of action separate from the Section 16(4) challenge. The original denial order was quashed to allow re-consideration under the new law.",pdf:""},
+  {id:32,name:"Philip Thomas v. State Tax Officer (2026)",court:"Kerala High Court",date:"27.01.2026",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"Section 16(5) non-obstante clause overrides Section 16(4); once conditions met timeline loses significance.",defence:"Section 16(5) starts with 'Notwithstanding anything contained in sub-section (4).' This means once the conditions of 16(5) are met — returns filed by November 30, 2021 for FY 17-21 — the Section 16(4) timeline loses its significance entirely. The denial order could not stand.",pdf:""},
+  {id:33,name:"Tirumala Konda Plywoods v. The Assistant Commissioner",court:"Andhra Pradesh High Court",date:"18.07.2023",prov:"Section 16(4)",won:"Department",cat:"",reason:"Sections 16(2) and 16(4) operate independently; paying late fee does not revive lapsed ITC.",defence:"Sections 16(2) and 16(4) operate independently and are not contradictory. ITC is a statutory concession not a fundamental right. Paying a late fee for a delayed return under Section 47 does not extend the statutory deadline for availing ITC under Section 16(4) — these are separate provisions with separate purposes.",pdf:""},
+  {id:34,name:"Tvl. Kavin HP Gas Gramin Vitrak v. Commissioner of Commercial Taxes",court:"Madras High Court",date:"24.11.2023",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"GSTN portal unable to accept returns without output tax payment is a technical barrier; taxpayer not prejudiced.",defence:"The Court observed that the GSTN portal's inability to accept GSTR-3B returns without full cash payment of output tax acted as a technical barrier preventing the taxpayer from complying. It held that the taxpayer should not be prejudiced by the absence of an enabling mechanism — the government cannot penalise a taxpayer for failing to use a mechanism that the government itself failed to provide.",pdf:""},
+  {id:35,name:"M/s D.Y. Beathel Enterprises v. State Tax Officer",court:"Madras High Court",date:"24.02.2021",prov:"Section 16(2)(c)",won:"Taxpayer",cat:"",reason:"Department cannot reverse ITC from buyer without first initiating recovery against defaulting supplier.",defence:"The department cannot directly reverse ITC from the purchasing dealer without first initiating recovery proceedings against the supplier who failed to pay the tax. Since the buyer acted in good faith, fulfilled all statutory requirements, paid GST through banking channels and received valid invoices, the denial of ITC without proceeding against the supplier is unjustified and impermissible.",pdf:""},
+  {id:36,name:"M/s LGW Industries Ltd. v. Union of India",court:"Calcutta High Court",date:"13.12.2021",prov:"Section 16(2)(c)",won:"Mixed",cat:"",reason:"ITC cannot be denied mechanically because supplier suspected non-existent; proper investigation required.",defence:"ITC cannot be denied mechanically merely because the supplier was suspected to be non-existent. The tax authorities must conduct a proper investigation, verify the genuineness of the transaction, examine documents, and provide the taxpayer an opportunity of hearing before denying ITC. The impugned orders were set aside and the matter was remanded for fresh consideration.",pdf:""},
+  {id:37,name:"Suncraft Energy Pvt. Ltd. v. Asst. Commissioner of State Tax",court:"Calcutta High Court",date:"02.08.2023",prov:"Section 16(2)",won:"Taxpayer",cat:"",reason:"ITC cannot be denied solely due to non-reflection in GSTR-2A; GSTR-2A is facilitative tool only; SC affirmed.",defence:"ITC cannot be denied solely due to non-reflection of invoices in GSTR-2A when the purchaser has produced documentary proof of genuine transactions. GSTR-2A is only a facilitative tool for self-assessment — it is not conclusive proof of ITC eligibility. Authorities must first investigate or proceed against the supplier. The Supreme Court dismissed the Revenue's SLP confirming this ruling nationwide.",pdf:""},
+  {id:38,name:"Sanchita Kundu v. Asst. Commissioner of State Tax",court:"Calcutta High Court",date:"05.05.2022",prov:"Section 16",won:"Mixed",cat:"",reason:"Authorities must verify genuineness; must check if purchases occurred before supplier registration cancellation.",defence:"The tax authorities must verify the documents and determine whether the transactions were genuine and whether the purchases occurred before the cancellation of the supplier's registration. An ITC claim cannot be rejected solely because a supplier's registration was later cancelled — the relevant question is whether the transaction was genuine at the time it occurred.",pdf:""},
+  {id:39,name:"M/s R.T. Infotech v. Additional Commissioner Grade-2",court:"Allahabad High Court",date:"30.05.2025",prov:"Section 16(2)(c)",won:"Taxpayer",cat:"",reason:"ITC cannot be denied because supplier failed to deposit tax when purchaser acted bona fide.",defence:"ITC cannot be denied merely because the supplier failed to deposit tax with the Government when the purchaser has acted bona fide and produced documentary evidence of the transaction. A purchasing dealer cannot compel the seller to file returns and deposit tax — the law cannot impose an impossible obligation. Authorities must proceed against the defaulting supplier instead.",pdf:""},
+  {id:40,name:"Lokenath Construction Pvt. Ltd. v. Joint Commissioner of State Tax",court:"Calcutta High Court",date:"02.05.2024",prov:"Section 16(2)(c)",won:"Taxpayer",cat:"",reason:"Tax authorities must first investigate supplier and attempt recovery before denying buyer ITC.",defence:"The tax authorities should first investigate the supplier and attempt recovery from the defaulting seller before denying ITC to the purchasing dealer. The adjudicating authority rejected documents such as Chartered Accountant certificates without giving proper reasons — this is impermissible. The purchaser's right to ITC cannot be extinguished without first exhausting remedies against the defaulting supplier.",pdf:""},
+  {id:41,name:"M/s Shree Kishna Chemicals v. Union of India",court:"Madhya Pradesh High Court",date:"17.02.2025",prov:"Section 16(2)(c)",won:"Department",cat:"",reason:"ITC is statutory concession subject to conditions; challenge not sustainable at notice stage.",defence:"ITC is a statutory concession subject to conditions prescribed by the legislature. Courts have already upheld the validity of Section 16(2)(c). A challenge to a show-cause notice is not sustainable — the taxpayer must respond on merits and the department is entitled to investigate and issue demands.",pdf:""},
+  {id:42,name:"M/s Aastha Enterprises v. State of Bihar",court:"Patna High Court",date:"18.08.2023",prov:"Section 16(1) & 16(2)(c)",won:"Department",cat:"",reason:"ITC statutory benefit only when all Section 16 conditions strictly satisfied; burden on purchaser.",defence:"Input Tax Credit is a statutory benefit that can be claimed only when all conditions in Section 16 are strictly satisfied. Even if the purchaser has paid GST to the supplier and possesses invoices, ITC cannot be granted unless the supplier has actually paid the tax to the government. The burden of proof lies on the purchasing dealer to establish that the supplier deposited the collected tax.",pdf:""},
+  {id:43,name:"Trendships Online Services Pvt. Ltd. v. Commissioner",court:"Allahabad High Court",date:"26.05.2025",prov:"Section 16(2)(c)",won:"Department",cat:"",reason:"Section 16(2)(c) mandates actual payment by supplier; petitioner failed to prove tax deposited.",defence:"Section 16(2)(c) clearly mandates actual payment of tax by the supplier as a condition precedent for availing ITC. The petitioner failed to prove that tax was deposited by the supplier and could not discharge the burden of proving genuineness of the transaction. Movement of goods was also questioned.",pdf:""},
+  {id:44,name:"Commissioner of Trade & Taxes, Delhi v. M/s Shanti Kiran India Pvt. Ltd.",court:"Supreme Court of India",date:"09.10.2025",prov:"Section 9(2)(g) DVAT / Sec 16(2)(c)",won:"Taxpayer",cat:"",reason:"Supreme Court upheld ITC; transactions not disputed; seller registered at time of supply; no fraud or collusion.",defence:"The Supreme Court dismissed the department's appeal and upheld ITC. The Court noted that the transactions and invoices were not disputed and the seller was registered at the time of supply. In the absence of fraud or collusion, a bona fide purchaser cannot be denied ITC for supplier default. The department must act against the defaulting supplier rather than penalising the innocent buyer.",pdf:""},
+  {id:45,name:"On Quest Merchandising India Pvt. Ltd. v. Govt. of NCT of Delhi",court:"Delhi High Court",date:"26.10.2017",prov:"Section 9(2)(g) DVAT / Sec 16(2)(c)",won:"Taxpayer",cat:"",reason:"Denial of ITC to bona fide purchaser for seller's default is arbitrary and violates Article 14.",defence:"Denial of ITC to a bona fide purchaser due to seller's default is arbitrary and violative of Article 14. There is no mechanism available for a purchasing dealer to verify whether the seller has deposited tax with the government. The law cannot impose an impossible burden. The Court held that where there is no fraud or collusion, ITC cannot be denied to an innocent purchaser.",pdf:""},
+  {id:46,name:"Sahil Enterprises v. Union of India",court:"Tripura High Court",date:"07.01.2026",prov:"Section 16(2)(c)",won:"Taxpayer",cat:"",reason:"Section 16(2)(c) read down — cannot be invoked against innocent purchaser absent fraud or collusion.",defence:"Section 16(2)(c) cannot be applied to deny ITC to a bona fide purchaser in the absence of evidence of fraud, collusion, or sham transactions. The Court read down the provision holding that imposing such burden on a purchasing dealer is onerous and impractical. Denial of ITC is justified only in cases involving fraud or collusion between buyer and seller.",pdf:""},
+  {id:47,name:"Arise India Limited v. Commissioner of Trade & Taxes, Delhi",court:"Delhi High Court",date:"26.10.2017",prov:"Section 9(2)(g) DVAT / Sec 16(2)(c)",won:"Taxpayer",cat:"",reason:"Denying ITC to bona fide purchaser for seller's default is arbitrary and violates Article 14.",defence:"Denying ITC to a bona fide purchaser for the seller's default is arbitrary and violative of Article 14. The burden cannot be imposed on a purchasing dealer to ensure supplier compliance. Where the purchaser held valid invoices and paid the consideration including tax through banking channels, ITC cannot be denied.",pdf:""},
+  {id:48,name:"Diya Agencies v. State Tax Officer",court:"Kerala High Court",date:"12.09.2023",prov:"Section 16(2)(c)",won:"Taxpayer",cat:"",reason:"GSTR-2A is facilitative tool not statutory condition; ITC cannot be denied for non-reflection in GSTR-2A.",defence:"GSTR-2A is only a facilitative tool for self-assessment and not a statutory condition under Section 16(2)(c). ITC cannot be denied merely due to non-reflection in GSTR-2A. The assessing authority must verify the genuineness of the transaction and whether tax has been paid — no proper verification was done and the matter was remanded.",pdf:""},
+  {id:49,name:"Tashi Air Pvt. Ltd. v. Union of India",court:"Gauhati High Court",date:"05.08.2024",prov:"Section 16(2)(c)",won:"Department",cat:"",reason:"Strict interpretation of Section 16(2)(c); burden on taxpayer to prove compliance; invoices alone insufficient.",defence:"Section 16(2)(c) requires strict compliance — ITC is conditional upon actual payment of tax to the Government. The burden lies on the taxpayer to prove compliance with all statutory conditions. Mere possession of invoices or payment to the supplier is not sufficient if the supplier has not remitted the tax to the government.",pdf:""},
+  {id:50,name:"Sri Ganapathi Pandi Industries v. Asst. Commissioner (State Tax)",court:"Madras High Court",date:"17.10.2024",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"Section 16(5) non-obstante overrides Section 16(4); taxpayers filing GSTR-3B by 30.11.2021 for FYs 2017-21 entitled to ITC.",defence:"Section 16(5), with its non-obstante clause overriding Section 16(4), entitles taxpayers who filed GSTR-3B on or before 30.11.2021 for FYs 2017-18 to 2020-21 to claim ITC regardless of the Section 16(4) time bar. The Court quashed all impugned orders, directed de-freezing of bank accounts, and ordered refund/adjustment of all amounts recovered. This is the landmark batch judgment binding all similar cases before the Madras HC.",pdf:""},
+  {id:51,name:"Philip Thomas v. State Tax Officer, SGST Department",court:"Kerala High Court",date:"27.01.2026",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"Once Section 16(5) conditions satisfied — return filed by 30.11.2021 — Section 16(4) timeline loses significance.",defence:"Once the conditions in Section 16(5) are satisfied — return filed on or before 30.11.2021 — the timeline stipulated under Section 16(4) loses its significance entirely. The Section 16(5) non-obstante clause is absolute. Since the petitioner filed the return on 02.11.2020, well before the cut-off, the denial order could not stand.",pdf:""},
+  {id:52,name:"Pazhassi Motors v. State of Kerala",court:"Kerala High Court",date:"04.12.2025",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"Section 16(5) is separate statutory provision creating fresh cause of action; prior adverse ruling does not bar.",defence:"Section 16(5) is a separate statutory provision from Section 16(4) and creates a fresh cause of action. A prior adverse ruling on the constitutional challenge to Section 16(4) does not bar a petition grounded on Section 16(5). The department's maintainability objection was rejected and the taxpayer was entitled to relief under the new provision.",pdf:""},
+  {id:53,name:"M/s Sesame Technologies Pvt. Ltd. v. Deputy State Tax Officer",court:"Kerala High Court",date:"06.01.2026",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"Section 16(5) subsequently notified entitles petitioner to ITC denied solely on Section 16(4).",defence:"Section 16(5), having been subsequently notified with retrospective effect, entitles the petitioner to the ITC benefit that was denied solely on account of Section 16(4). The court set aside the assessment order and directed the competent authority to pass a fresh order granting ITC.",pdf:""},
+  {id:54,name:"Prabir Kumar Das v. Asst. Commissioner of State Tax",court:"Calcutta High Court",date:"05.03.2025",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"WB GST Amendment Act 2024 inserted Section 16(5) retrospectively; ITC disallowance for late filing unsustainable.",defence:"The WB GST Amendment Act 2024 inserted Section 16(5) retrospectively w.e.f. 01.07.2017. Since the petitioner's GSTR-3B for September 2018 to March 2019 was filed within the extended cut-off under Section 16(5), the ITC disallowance — which was solely due to late filing — could not be sustained. The petitioner was permitted to apply for electronic rectification.",pdf:""},
+  {id:55,name:"Med Biogenex Pvt. Ltd. v. Superintendent, CGST",court:"Calcutta High Court",date:"05.03.2025",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"Returns for November 2018 to March 2019 regularised under Section 16(5) cut-off; disallowance unsustainable.",defence:"The petitioner's returns for November 2018 to March 2019 stand regularised under the new cut-off under Section 16(5). The ITC disallowance was solely based on delayed filing, and the retrospective amendment validates those returns, making denial of the benefit impermissible. The Court allowed the petition.",pdf:""},
+  {id:56,name:"Hiranmoy Dutta v. State of West Bengal",court:"Calcutta High Court",date:"06.03.2025",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"Returns for July 2018 to March 2020 regularised under Section 16(5); ITC disallowance entirely premised on late filing.",defence:"The returns for July 2018 to March 2020 stand regularised under Section 16(5) given the new cut-off of 30.11.2021. The ITC disallowance was entirely premised on late filing, which the retrospective amendment cures. The petitioner was permitted to apply for electronic rectification to claim the benefit.",pdf:""},
+  {id:57,name:"Rajkumar Josphine v. Superintendent",court:"Madras High Court",date:"09.07.2025",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"Sri Ganapathi Pandi Industries batch ratio applied directly; impugned order quashed.",defence:"The Madras HC applied the Sri Ganapathi Pandi Industries batch ratio directly to this single petition, demonstrating the binding precedential reach of that order across all subsequent similar cases. The impugned order dated 27.02.2025 was quashed to the extent it bars ITC under Section 16(4) within the periods covered by Section 16(5).",pdf:""},
+  {id:58,name:"M/s McLeod Russel India Ltd. v. Union of India",court:"Gauhati High Court",date:"09.12.2025",prov:"Section 16(2)(aa)",won:"Taxpayer",cat:"",reason:"Section 16(2)(aa) read down — ITC cannot be denied to bona fide purchaser solely for supplier GSTR-1 default.",defence:"The Division Bench read down Section 16(2)(aa) of both CGST and AGST Acts, holding that ITC cannot be denied to a bona fide purchaser solely because the supplier defaulted in GSTR-1 filing. Courts must afford bona fide buyers an opportunity to prove their entitlement before denial. The provision cannot be applied mechanically without examining the genuineness of the underlying transaction.",pdf:""},
+  {id:59,name:"B. Braun Medical India Pvt. Ltd. v. Union of India",court:"Delhi High Court",date:"12.03.2025",prov:"Section 16(2)(aa)",won:"Taxpayer",cat:"",reason:"Wrong GSTIN was inadvertent clerical error; department admitted no other entity claimed ITC on same purchases.",defence:"The petitioner's name was correctly mentioned in the invoices — only the wrong GSTN of the Bombay office appeared instead of Delhi. The Department admitted in the counter affidavit that no other entity had claimed ITC on these purchases. The sole basis for rejection was the wrong GSTIN, which was a clerical error and not a ground to deny ITC on genuine transactions.",pdf:""},
+  {id:60,name:"M. Trade Links v. Union of India",court:"Kerala High Court",date:"04.06.2024",prov:"Section 16(2)(aa) & 16(2)(c)",won:"Taxpayer",cat:"",reason:"Section 16(2)(aa) must protect genuine taxpayers; alternate documentary evidence beyond GSTR-2B must be considered.",defence:"Section 16(2)(aa) must be applied in a manner protecting genuine taxpayers. Authorities must consider alternate documentary evidence beyond GSTR-2B data — including invoices, e-way bills, and payment proof — before denying ITC. A buyer who holds valid invoices, paid GST, and received goods cannot be denied ITC solely because the supplier failed to upload invoices in GSTR-1.",pdf:""},
+  {id:61,name:"Bharti Telemedia Ltd. v. Union of India",court:"Delhi High Court",date:"Ongoing",prov:"Section 16(2)(aa), 16(2)(c), 16(4)",won:"Pending",cat:"",reason:"Making buyer's ITC contingent on supplier compliance needs deep constitutional scrutiny; interim protection granted.",defence:"Making a buyer's right to ITC contingent on a supplier's compliance with statutory obligations needs deep constitutional scrutiny. The Court's willingness to hear this as a Batch Matter suggests it recognises that the matching requirement under Section 16(2)(aa) may place an onerous and inequitable burden on purchasers. Interim protection against coercive recovery steps was granted.",pdf:""},
+  {id:62,name:"Manoj Kumar Singh v. Principal Commissioner CGST",court:"Jharkhand High Court",date:"21.01.2026",prov:"Section 16(2), 16(4) & 16(5)",won:"Mixed",cat:"",reason:"Section 16(5) notwithstanding clause applies for FY 2017-21; matter remanded for fresh consideration.",defence:"The Court quashed the previous adverse order by taking cognizance of the retrospective amendment in Section 16(5). For Financial Years 2017-18 to 2020-21, the notwithstanding clause now allows ITC if the return was filed by November 30, 2021. The matter was remanded for fresh consideration under the new statutory position.",pdf:""},
+  {id:63,name:"M/s Engineering Tools Corporation v. Asst. Commissioner (ST)",court:"Madras High Court",date:"15.02.2024",prov:"Section 16(2)",won:"Taxpayer",cat:"",reason:"ITC claim cannot be rejected solely for retrospective cancellation of supplier's registration.",defence:"An ITC claim cannot be rejected solely on the ground that the supplier's registration was cancelled retrospectively. The department failed to consider the physical evidence of the transaction — invoices, banking proof, etc. — submitted by the taxpayer. The genuineness of the transaction at the time it was entered into must be the primary consideration.",pdf:""},
+  {id:64,name:"Treco Wire India Pvt. Ltd. v. Commissioner CGST",court:"Delhi High Court",date:"24.09.2025",prov:"Section 16(2)(c) & Section 74",won:"Department",cat:"",reason:"Bogus invoices from non-existing firm; taxpayer failed to file appeal under Section 107 within limitation.",defence:"The Court emphasised the finality of the order — the taxpayer failed to file a statutory appeal under Section 107 within the limitation period without exceptional circumstances to justify the delay. The order was also based on bogus invoices from a non-existing and non-operational firm. The taxpayer's reply characterised as a blanket denial without substantive engagement with the department's findings.",pdf:""},
+  {id:65,name:"Arunachala Gas Agency v. Asst. Commissioner CGST",court:"Madras High Court",date:"28.01.2026",prov:"Section 16(4) & 16(5)",won:"Taxpayer",cat:"",reason:"Finance Act (No.2) 2024 retrospectively inserted Section 16(5) overriding Section 16(4) for relevant FYs.",defence:"The Finance Act (No.2) 2024 retrospectively inserted Section 16(5) with a Notwithstanding Clause that overrides the original time limits in Section 16(4) for Financial Years 2017-18 to 2020-21. Since the taxpayer's GSTR-3B was filed before the 30.11.2021 cut-off, the ITC denial based on Section 16(4) limitation was unsustainable.",pdf:""},
+  {id:66,name:"Malaya Rub-Tech Industries v. Union of India",court:"Tripura High Court",date:"10.02.2026",prov:"Section 16(2)(c) & Section 73",won:"Taxpayer",cat:"",reason:"Section 16(2)(c) read down — cannot be invoked against innocent purchaser absent fraud or collusion.",defence:"Section 16(2)(c) cannot be invoked against an innocent purchaser in the absence of evidence of fraud, collusion, or sham transactions. The Court applied the Doctrine of Impossibility — placing an impossible burden on a buyer to monitor and ensure supplier compliance is arbitrary and violates Article 14. The provision was read down accordingly.",pdf:""},
+  {id:67,name:"M/s Balaji Exim v. Commissioner CGST",court:"Delhi High Court",date:"10.03.2023",prov:"Section 16(2) & Section 54",won:"Taxpayer",cat:"",reason:"Refund rejected on mere suspicion without cogent material; supplier's alleged fake credit cannot deny exporter's refund.",defence:"The Court held that the refund applications were rejected on mere suspicion without any cogent material proving the transactions were not genuine. A supplier's alleged fake credit cannot be a ground to reject a recipient's refund unless it is proven that the recipient did not actually receive the goods. The orders were quashed.",pdf:""},
+  {id:68,name:"TVL. Cleon Optobiz Pvt. Ltd. v. Asst. Commissioner (ST)",court:"Madras High Court",date:"19.01.2024",prov:"Section 16 & Rule 36",won:"Taxpayer",cat:"",reason:"Order quashed for failing to consider documentary evidence of genuine purchases.",defence:"The authority's claim that documents were not produced was unsustainable since invoices and bank statements were clearly provided. The order was quashed for failing to consider evidence establishing genuine purchases and for recording findings on issues not included in the original SCN. Retroactive registration cancellation of the supplier cannot defeat a genuine purchase transaction.",pdf:""},
+  {id:69,name:"M/s Asian Lifts and Escalator Pvt. Ltd. v. Asst. Commissioner CGST",court:"Madras High Court",date:"06.02.2026",prov:"Section 16(4), 16(5) & 16(6)",won:"Mixed",cat:"",reason:"Belated ITC no longer res integra; settled via retrospective insertion of Sections 16(5) and 16(6).",defence:"The issue of belatedly availing Input Tax Credit is no longer res integra and has been settled in favour of the taxpayer via the retrospective insertion of Sections 16(5) and 16(6). Substantial benefit already availed cannot be denied merely on the ground of late filing — the retrospective amendments cure the defect. The impugned order was set aside and the matter was remitted back.",pdf:""},
+  {id:70,name:"Mahadeo Construction Co v. Union of India",court:"Jharkhand High Court",date:"21.04.2020",prov:"Section 73",won:"Taxpayer",cat:"",reason:"Section 73 mandatory before Section 79 recovery; disputed interest requires adjudication.",defence:"Section 73 is mandatory before Section 79 recovery proceedings can commence. The phrase 'tax not paid' includes delayed payment and falls under Section 73 — disputed interest requires adjudication and quantification before recovery. Automatic liability does not equal automatic quantification. Natural justice demands an opportunity to contest even automatic interest computations.",pdf:""},
+  {id:71,name:"Ashika Business Pvt. Ltd. v. Union of India",court:"Gauhati High Court",date:"09.05.2024",prov:"Section 73",won:"Department",cat:"",reason:"Alternative remedy available — Section 107 appeal must be preferred; Rule 142 violation waived.",defence:"Alternative remedy is available under Section 107 and must be preferred before approaching the writ court. Rule 142 violation was waived — the taxpayer did not object to the procedural irregularity in the reply to the SCN. Physical service is valid under Section 169 even where portal service failed.",pdf:""},
+  {id:72,name:"Delhi Soccer Pvt. Ltd. v. Union of India",court:"Delhi High Court",date:"28.05.2024",prov:"Section 73",won:"Taxpayer",cat:"",reason:"Genuine mistake — taxpayer believed Section 73 proceedings closed after Section 61 concluded; remanded.",defence:"The Court accepted that peculiar facts established a genuine mistake — the petitioner reasonably believed that Section 73 proceedings had closed after the Section 61 scrutiny concluded favourably. Since the sole reason for the adverse order was non-filing of a reply in the Section 73 proceeding, the opportunity must be granted to file a reply. The order was set aside and remanded.",pdf:""},
+  {id:73,name:"Garg Associates v. State of Assam",court:"Gauhati High Court",date:"13.03.2026",prov:"Section 73",won:"Taxpayer",cat:"",reason:"DRC-01 summary cannot replace proper SCN; unsigned attachment not authenticated per Rule 26(3).",defence:"A DRC-01 summary cannot replace a proper Show Cause Notice under Section 73(1). Rule 142 requires the summary to be issued in addition to the SCN, not instead of it. A Section 73(3) Statement of Tax Determination cannot substitute for a Section 73(1) SCN — the legislature deliberately distinguished between these two instruments. An unsigned attachment without authentication under Rule 26(3) is not a valid SCN.",pdf:""},
+  {id:74,name:"Medizen Labs Pvt. Ltd. v. Assistant Commissioner",court:"Karnataka High Court",date:"25.02.2026",prov:"Section 73",won:"Taxpayer",cat:"",reason:"Ex-parte order passed without reply; bonafide lapse established; opportunity granted; attachment rescinded.",defence:"The Court noted that the ex-parte order was passed without a reply from the petitioner and a substantial amount had already been recovered. Considering the bonafide nature of the lapse and the availability of explanatory material to contest the demand, the order was set aside and the matter remitted to the reply stage. The bank attachment was ordered to be rescinded within one week.",pdf:""},
+  {id:75,name:"M/s Rajkumar Josphine v. Superintendent",court:"Madras High Court",date:"09.07.2025",prov:"Section 16(4)",won:"Taxpayer",cat:"",reason:"53rd GST Council extension applies; Sri Ganapathi Pandi Industries batch precedent applied.",defence:"The 53rd GST Council Meeting (22.06.2024) recommended extension of the deadline for availing ITC under Section 16(4) applicable to FYs 2017-18 to 2020-21 with the new deadline of 30.11.2021. Presidential Assent was obtained on 16.08.2024 via Finance Act No.2 of 2024. The Sri Ganapathi Pandi Industries batch precedent from the Madras HC dated 17.10.2024 applies directly. The impugned order was quashed.",pdf:""},
+];
+
+// ── COURT HELPERS ────────────────────────────────────────────
+function getCourtTierBadge(court){
+  if(!court) return {label:'HC',cls:'tier-hc'};
+  if(court.includes('Supreme')) return {label:'SC',cls:'tier-sc'};
+  if(court.includes('GSTAT')||court.includes('Tribunal')) return {label:'GSTAT',cls:'tier-gstat'};
+  if(court.includes('AAR')) return {label:'AAR',cls:'tier-aar'};
+  return {label:'HC',cls:'tier-hc'};
+}
+
+function getWonStyle(w){
+  const s=w.toLowerCase();
+  if((s.includes('taxpayer')||s.includes('taxpayers'))&&!s.includes('partial'))return{cls:'b-green',lbl:'Taxpayer Won'};
+  if(s.includes('department')||s.includes('revenue'))return{cls:'b-red',lbl:'Dept Won'};
+  if(s.includes('pending')||s.includes('admitted')||s.includes('interim'))return{cls:'b-blue',lbl:'Pending'};
+  return{cls:'b-amber',lbl:'Mixed'};
+}
+
+// ── LIBRARY ──────────────────────────────────────────────────
+function filterLib(){
+  const q=document.getElementById('srch').value.toLowerCase();
+  const ft=document.getElementById('fTier').value;
+  const fc=document.getElementById('fCourt').value;
+  const fw=document.getElementById('fWon').value;
+  const fp=document.getElementById('fProv').value;
+  const filtered=CASES.filter(c=>{
+    const mq=!q||c.name.toLowerCase().includes(q)||c.court.toLowerCase().includes(q)||c.reason.toLowerCase().includes(q)||c.defence.toLowerCase().includes(q)||c.prov.toLowerCase().includes(q);
+    const tier=getCourtTierBadge(c.court).label;
+    const mt=!ft||(ft==='Supreme Court'&&tier==='SC')||(ft==='High Court'&&tier==='HC')||(ft==='GSTAT'&&tier==='GSTAT')||(ft==='AAR'&&tier==='AAR');
+    const mco=!fc||c.court.includes(fc);
+    const ws=getWonStyle(c.won).lbl.toLowerCase();
+    const mw=!fw||(fw==='taxpayer'&&ws.includes('taxpayer'))||(fw==='department'&&ws.includes('dept'))||(fw==='mixed'&&ws.includes('mixed'))||(fw==='pending'&&ws.includes('pending'));
+    const mp=!fp||c.prov.includes(fp);
+    return mq&&mt&&mco&&mw&&mp;
+  });
+  document.getElementById('countLbl').textContent=`${filtered.length} of ${CASES.length} cases`;
+  renderCaseRows(filtered);
+}
+
+function renderCaseRows(data){
+  const g=document.getElementById('caseGrid');
+  g.innerHTML=data.map(c=>{
+    const ws=getWonStyle(c.won);
+    const tb=getCourtTierBadge(c.court);
+    const hasPdf=c.pdf&&c.pdf.trim()!=='';
+    const defHighlight=c.defence.length>80?c.defence.substring(0,80)+'…':c.defence;
+    return`<div class="case-card" id="card-${c.id}">
+      <div class="case-card-header" onclick="toggleCase(${c.id})">
+        <div class="case-num">#${String(c.id).padStart(2,'0')}</div>
+        <div class="case-main-info">
+          <div class="case-name">${c.name}</div>
+          <div class="case-meta">
+            <span class="case-court-name">${c.court}</span>
+            <span style="color:var(--border2);">·</span>
+            <span class="case-date">${c.date}</span>
+          </div>
+        </div>
+        <div class="case-right">
+          <span class="won-pill badge-sm ${ws.cls}">${ws.lbl}</span>
+          <span class="prov-chip">${c.prov.split(';')[0].split(',')[0].trim()}</span>
+          <span class="tier-badge ${tb.cls}">${tb.label}</span>
+          ${c.cat?`<span class="cat-chip">Cat ${c.cat}</span>`:''}
+        </div>
+      </div>
+      <div class="case-expand" id="expand-${c.id}">
+        <div class="expand-inner">
+          <div class="expand-section">
+            <div class="expand-label">Key Legal Ruling</div>
+            <div style="font-size:12px;color:var(--ink3);line-height:1.7;">${c.reason}</div>
+          </div>
+          <div class="expand-section">
+            <div class="expand-label">⚖️ Defence Paragraph <span style="font-size:10px;background:var(--gold-l);color:var(--gold);padding:1px 6px;border-radius:4px;margin-left:4px;">Use in SCN Reply</span></div>
+            <div class="defence-para" id="def-${c.id}">
+              <button class="copy-btn" id="copy-${c.id}" onclick="copyDefence(${c.id})">Copy</button>
+              <span class="defence-highlight">${c.defence}</span>
+            </div>
+          </div>
+          <div class="expand-section" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            ${hasPdf
+              ?`<a href="${c.pdf}" target="_blank" class="pdf-btn">📄 View Judgment PDF</a>`
+              :`<button class="pdf-btn disabled" onclick="showPdfGuide(${c.id})">📄 Add PDF Link</button>`
+            }
+            <span style="font-size:11px;color:var(--ink4);">Upload your PDF to Google Drive → share link → click "Add PDF Link"</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleCase(id){
+  const exp=document.getElementById('expand-'+id);
+  exp.classList.toggle('open');
+}
+
+function copyDefence(id){
+  const c=CASES.find(x=>x.id===id);
+  if(!c) return;
+  navigator.clipboard.writeText(c.defence).then(()=>{
+    const btn=document.getElementById('copy-'+id);
+    btn.textContent='Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
+  });
+}
+
+function showPdfGuide(id){
+  alert(`To add a PDF link for Case #${id}:\n\n1. Upload the judgment PDF to Google Drive\n2. Right-click the file → Get link → Anyone with the link → Copy\n3. Contact support to add the link to this case card\n\nThis will be updated in the next release.`);
+}
+
+function renderLib(){filterLib();}
+
+// ── SUPPLIER RISK ────────────────────────────────────────────
+const SUPPLIERS=[
+  {name:"Sri Venkateshwara Traders",gstin:"33AABSV1234K1ZT",h:[1,1,1,1,1,1],score:95,itc:1.8,flags:[]},
+  {name:"Rajan Steel Enterprises",gstin:"33AABRS5678P1ZM",h:[1,1,1,0,1,1],score:82,itc:3.4,flags:[]},
+  {name:"Lakshmi Textiles Pvt. Ltd.",gstin:"29AABLT9012H1ZQ",h:[1,1,1,1,1,1],score:98,itc:5.2,flags:[]},
+  {name:"Kumar & Brothers",gstin:"27AABKB3456F1ZR",h:[1,0,1,0,1,1],score:68,itc:0.95,flags:['t32lock']},
+  {name:"Mehta Trading Co.",gstin:"24AABMT7890P1ZK",h:[0,1,0,1,0,1],score:45,itc:2.1,flags:['t32lock']},
+  {name:"National Supplies Ltd.",gstin:"06AABNS1234P1ZN",h:[1,1,0,0,1,0],score:52,itc:4.3,flags:['reclaim']},
+  {name:"Omega Electronics",gstin:"19AABOE5678K1ZS",h:[0,0,1,0,0,1],score:28,itc:6.7,flags:['t32lock','reclaim']},
+  {name:"Priya Chemicals",gstin:"23AABPC9012N1ZV",h:[1,0,0,1,0,0],score:32,itc:1.8,flags:['gstat']},
+  {name:"Delta Fabricators",gstin:"32AABDF3456P1ZU",h:[0,0,0,1,0,0],score:18,itc:3.9,flags:['reclaim','gstat']},
+  {name:"Shiv Shakti Minerals",gstin:"36AABSS7890L1ZW",h:[0,0,0,0,0,0],score:0,itc:8.5,flags:['t32lock','reclaim','gstat']},
+  {name:"Coastal Agro Products",gstin:"32AABCA1234K1ZT",h:[1,1,1,1,0,1],score:78,itc:2.45,flags:[]},
+  {name:"Horizon Pharma",gstin:"27AABHP5678R1ZM",h:[1,0,1,1,1,0],score:65,itc:1.9,flags:['t32lock']},
+  {name:"Pioneer Infrastructure",gstin:"29AABPI9012H1ZQ",h:[0,1,0,0,0,1],score:35,itc:7.2,flags:['reclaim','gstat']},
+  {name:"Galaxy Textiles",gstin:"24AABGT3456F1ZR",h:[1,1,1,1,1,0],score:88,itc:3.1,flags:[]},
+  {name:"Swift Logistics",gstin:"33AABSL7890P1ZK",h:[1,1,1,1,1,1],score:100,itc:1.55,flags:[]},
+  {name:"Metro Steel Works",gstin:"06AABMS1234P1ZN",h:[0,0,1,0,1,0],score:38,itc:4.8,flags:['t32lock']},
+];
+
+function getRisk(s){
+  if(s>=70) return{lbl:'GREEN',cls:'rb-green',col:'#12A05A'};
+  if(s>=40) return{lbl:'AMBER',cls:'rb-amber',col:'#D4860A'};
+  if(s>0) return{lbl:'RED',cls:'rb-red',col:'#D42020'};
+  return{lbl:'BLACK',cls:'rb-black',col:'#D4A843'};
+}
+
+function renderRisk(){
+  const g=document.getElementById('supplierGrid');
+  g.innerHTML=SUPPLIERS.map(s=>{
+    const r=getRisk(s.score);
+    const hist=s.h.map(x=>`<div class="fh-dot" style="background:${x?'#12A05A':'#D42020'};"></div>`).join('');
+    const action=r.lbl==='GREEN'?'Continue — monitor monthly':r.lbl==='AMBER'?'Watch — contact supplier':r.lbl==='RED'?'Alert — verify GSTR-1 immediately':'STOP — cease purchases now';
+    const flagsHtml=s.flags.map(f=>{
+      if(f==='t32lock') return`<span class="lock-flag">🔒 Table 3.2 Hard-Lock Risk</span>`;
+      if(f==='reclaim') return`<span class="reclaim-flag">⚠️ ITC Reclaim Block Risk</span>`;
+      if(f==='gstat') return`<span class="gstat-action-pill">⚖️ GSTAT Appeal Available</span>`;
+      return'';
+    }).join('');
+    return`<div class="supplier-card">
+      <div class="supplier-card-main">
+        <div><div class="s-name">${s.name}</div><div class="s-gstin">${s.gstin}</div></div>
+        <div><div class="filing-hist">${hist}</div><div style="font-size:10px;color:var(--ink4);margin-top:3px;">M1–M6 filing</div></div>
+        <div class="s-score" style="color:${r.col};">${s.score}</div>
+        <span class="risk-badge ${r.cls}"><span class="rb-dot" style="background:${r.col};"></span>${r.lbl}</span>
+        <div><div class="s-itc">₹${s.itc.toFixed(1)}L at risk</div><div style="font-size:11px;color:var(--ink4);margin-top:3px;">${action}</div></div>
+      </div>
+      ${flagsHtml?`<div class="supplier-flags">${flagsHtml}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ── ANALYSER ─────────────────────────────────────────────────
+const DEMO=`Reference No: ZD2904/SGST/2024/SCN/031  |  Date: 19.09.2024
+
+To: 29AABCS7890P1ZK — M/s Abhishek Construction Company
+No. 14, Builder's Colony, Hassan Road, Shivamogga, Karnataka – 577 201
+
+Tax Period: April 2017 to March 2018  |  F.Y.: 2017-18  |  Act: SGST/CGST Act, 2017
+Section: Section 73(1) r/w Rule 36(4) of the CGST Rules, 2017
+SCN Reference No.: ZD2904/SGST/SCN/2024/031  |  Date: 19.09.2024
+
+SUMMARY OF SHOW CAUSE NOTICE
+
+(a) Brief facts: M/s Abhishek Construction Company availed ITC of Rs. 12,44,780/- in GSTR-3B for FY 2017-18. However, GSTR-2A reflects only Rs. 8,91,320/-. The excess ITC of Rs. 3,53,460/- was identified as ineligible. The adjudicating authority passed an order dated 20.07.2024 confirming the demand solely on the numerical mismatch without following CBIC Circular No. 183/15/2022-GST.
+
+(b) Grounds: Excess ITC of Rs. 3,53,460/- claimed in GSTR-3B over GSTR-2A for FY 2017-18. Under Rule 36(4) CGST Rules 2017, ITC restricted to GSTR-2A reflected amounts. Demand confirmed with interest and penalty.
+
+(c) Tax: ITC Denied Rs. 3,53,460 | Interest Rs. 1,41,000 | Penalty Rs. 3,53,460 | Total Rs. 8,47,920`;
+
+const REPORT={
+  a:{taxpayer:"M/s Abhishek Construction Company",gstin:"29AABCS7890P1ZK",ref:"ZD2904/SGST/2024/SCN/031",date:"19.09.2024",fy:"2017-18",itc:"₹3,53,460",scn:"YES",hearing:"NOT STATED",circ183:"NO — Officer did not apply Circular 183/15/2022",mismatch:"YES — GSTR-3B vs GSTR-2A"},
+  track:"Track B — Rule 36(4) / GSTR-2A Mismatch",tag:"T2-C3-CIRCULAR",cat:"Category 3",score:"1 / 10",
+  conf:"This denial is almost certainly legally unsustainable. Multiple High Courts have ruled against this position on identical facts. The probability of successfully challenging this denial is very high.",
+  reason:"The denial is based solely on a GSTR-3B vs GSTR-2A discrepancy without independent verification. CBIC Circular 183/15/2022-GST prescribes a mandatory procedure for exactly this situation. The adjudicating authority was required to follow it suo motu. Non-application is an independent ground to quash the order.",
+  proc:"PROCEDURAL DEFECT — CBIC Circular 183/15/2022 not applied. The officer was required to follow the prescribed procedure before denying ITC. This renders the order procedurally defective independent of the substantive merits.",
+  case:{name:"Guru Mahesh Medicals v. Assistant Commissioner",cit:"WP No. 29754 of 2025 | NC: 2025:KHC:39541",court:"Karnataka HC (08.10.2025)",rel:"Directly on point — Karnataka HC set aside order where officer ignored Circular 183 procedure; held circular binding suo motu on all pending FY 2017-18 proceedings."},
+  action:"Writ Petition to High Court / Detailed Reply to SCN citing Circular 183",
+  deadline:"Reply to SCN: Within 30 days of 19.09.2024",
+  priority:"URGENT",
+  gstat:"GSTAT Appeal: Available as additional remedy if First Appellate Authority rules adversely. Single-member bench eligible if demand below ₹50 lakh. File under CGST Third Amendment Rules 2025."
+};
+
+function loadDemo(){document.getElementById('noticeInput').value=DEMO;}
+
+function runAnalysis(){
+  const txt=document.getElementById('noticeInput').value.trim();
+  if(!txt){alert('Please paste a GST notice first or click "Load Sample".');return;}
+  document.getElementById('btnTxt').style.display='none';
+  document.getElementById('btnSpin').style.display='inline-block';
+  document.getElementById('runBtn').classList.add('running');
+  setTimeout(()=>{
+    document.getElementById('btnTxt').style.display='inline';
+    document.getElementById('btnSpin').style.display='none';
+    document.getElementById('runBtn').classList.remove('running');
+    showReport(REPORT);
+  },2400);
+}
+
+function showReport(r){
+  const catCls=r.cat.includes('3')?'b-green':r.cat.includes('2')?'b-amber':r.cat.includes('1')?'b-red':'b-blue';
+  document.getElementById('reportOut').innerHTML=`
+  <div class="report-wrap">
+    <div style="text-align:center;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:14px;">
+      <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);letter-spacing:0.04em;">NARENTIS LEGAL RISK REPORT</div>
+      <div style="font-size:10px;color:var(--ink4);margin-top:2px;font-family:'JetBrains Mono',monospace;">GST ITC Denial Analysis Engine v1.0</div>
+    </div>
+    <div class="r-block">
+      <div class="r-block-title">A — NOTICE DETAILS</div>
+      ${Object.entries(r.a).map(([k,v])=>`<div class="r-row"><span class="r-key">${k.toUpperCase().replace(/_/g,' ')}:</span><span class="r-val">${v}</span></div>`).join('')}
+    </div>
+    <div class="r-block">
+      <div class="r-block-title">B — ANALYSIS RESULT</div>
+      <div class="r-row"><span class="r-key">TRACK:</span><span class="r-val">${r.track}</span></div>
+      <div class="r-row"><span class="r-key">TAG:</span><span class="r-val"><span class="badge-sm b-purple">${r.tag}</span></span></div>
+      <div class="r-row"><span class="r-key">CATEGORY:</span><span class="r-val"><span class="badge-sm ${catCls}">${r.cat}</span></span></div>
+      <div class="r-row"><span class="r-key">SCORE:</span><span class="r-val" style="font-weight:700;color:var(--green);font-size:13px;">${r.score}</span></div>
+      <div class="r-row"><span class="r-key">CONFIDENCE:</span><span class="r-val" style="font-style:italic;">${r.conf}</span></div>
+    </div>
+    <div class="r-block">
+      <div class="r-block-title">C — LEGAL REASONING</div>
+      <div style="font-size:11px;color:var(--ink2);line-height:1.7;">${r.reason}</div>
+    </div>
+    <div class="r-block">
+      <div class="r-block-title">D — PROCEDURAL FINDINGS</div>
+      <div style="font-size:11px;color:var(--red-t);line-height:1.7;font-weight:500;">${r.proc}</div>
+    </div>
+    <div class="r-block">
+      <div class="r-block-title">E — CASE LAW CITATION</div>
+      <div class="r-row"><span class="r-key">CASE:</span><span class="r-val" style="font-weight:600;">${r.case.name}</span></div>
+      <div class="r-row"><span class="r-key">CITATION:</span><span class="r-val">${r.case.cit}</span></div>
+      <div class="r-row"><span class="r-key">COURT:</span><span class="r-val">${r.case.court}</span></div>
+      <div class="r-row"><span class="r-key">RELEVANCE:</span><span class="r-val" style="font-style:italic;">${r.case.rel}</span></div>
+    </div>
+    <div class="r-block">
+      <div class="r-block-title">F — RECOMMENDED ACTION</div>
+      <div class="r-row"><span class="r-key">ACTION:</span><span class="r-val" style="font-weight:700;color:var(--green);">${r.action}</span></div>
+      <div class="r-row"><span class="r-key">DEADLINE:</span><span class="r-val">${r.deadline}</span></div>
+      <div class="r-row"><span class="r-key">PRIORITY:</span><span class="r-val"><span class="badge-sm b-red">${r.priority}</span></span></div>
+      <div class="r-row"><span class="r-key">GSTAT PATH:</span><span class="r-val" style="color:var(--purple);font-size:10px;">${r.gstat}</span></div>
+    </div>
+    <div class="r-block" style="background:var(--amber-l);border:1px solid #EDD580;border-radius:var(--r-md);padding:10px 12px;">
+      <div class="r-block-title" style="border-color:#EDD580;">G — LAWYER REVIEW (MANDATORY)</div>
+      <div style="font-size:11px;line-height:2;color:var(--ink3);">Reviewed by: ___________________________<br/>Designation: ___________________________<br/>Date: _________________________________<br/>Approved: YES / NO / MODIFY</div>
+    </div>
+    <div style="font-size:9px;color:var(--ink4);margin-top:10px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6;">Narentis v1.0 — AI-assisted analysis — not legal advice. All findings require review by a qualified GST practitioner before any action is taken. © 2025 Kaustubh Balaji.</div>
+  </div>`;
+}
+
+// ── CIRCULARS DATABASE ────────────────────────────────────────
+const CIRCULARS = [
+  {
+    id:1,
+    num:"Circular No. 183/15/2022-GST",
+    date:"27.12.2022",
+    subject:"Clarification on ITC availment — GSTR-3B vs GSTR-2A discrepancy for FY 2017-18 and FY 2018-19",
+    scope:"mismatch",
+    mandatory:true,
+    provisions:["Rule 36(4)","Section 16(2)"],
+    applicablePeriod:"FY 2017-18 and FY 2018-19",
+    summary:"This circular prescribes a mandatory step-by-step procedure for adjudicating officers to follow before confirming any ITC demand arising from a GSTR-3B vs GSTR-2A discrepancy. The officer must: (1) verify whether the discrepancy exists in the taxpayer's GSTR-2A; (2) if discrepancy is up to Rs. 5 lakh — obtain a CA/CMA certificate from the taxpayer showing ITC is genuinely eligible; (3) if above Rs. 5 lakh — obtain CA/CMA certificate and cross-verify with supplier's GSTR-1. The circular also clarifies that GSTR-2A is only a facilitative tool and not the final determinant of ITC eligibility. Demand cannot be confirmed solely on numerical mismatch without this procedure being followed.",
+    defence:"CBIC Circular No. 183/15/2022-GST dated 27.12.2022 is binding on all adjudicating authorities and prescribes a mandatory procedure before any ITC demand can be confirmed on account of GSTR-3B vs GSTR-2A discrepancy. The adjudicating authority was required to follow this procedure suo motu irrespective of whether the taxpayer raised it. Non-application of this circular independently renders the demand order void and liable to be set aside. This has been confirmed by the Karnataka High Court in Guru Mahesh Medicals v. Assistant Commissioner (WP No. 29754 of 2025) and R.S. Marketing and Logistics Pvt. Ltd. v. Commercial Tax Officer (05.06.2024).",
+    pdf:"https://cbic-gst.gov.in/pdf/circular-183.pdf"
+  },
+  {
+    id:2,
+    num:"Circular No. 193/05/2023-GST",
+    date:"17.07.2023",
+    subject:"Clarification regarding ITC availability — GSTR-2A/2B mismatch for period April 2019 to December 2021",
+    scope:"mismatch",
+    mandatory:true,
+    provisions:["Rule 36(4)","Section 16(2)(aa)"],
+    applicablePeriod:"April 2019 to December 2021",
+    summary:"This circular extends the procedure prescribed in Circular 183/15/2022 to cover the period April 2019 to December 2021. It clarifies the applicable Rule 36(4) percentage thresholds for different sub-periods: 20% for the period January 2020 onwards (after Notification 49/2019), 10% for October 2019 to December 2019, and 20% provisionally for the COVID period February to August 2020. Officers must follow the same CA/CMA certificate verification procedure as Circular 183 before confirming any mismatch-based demand for this extended period.",
+    defence:"CBIC Circular No. 193/05/2023-GST dated 17.07.2023 extends the mandatory mismatch verification procedure from Circular 183/15/2022 to the period April 2019 to December 2021. An adjudicating authority that confirms an ITC demand for this period solely on the basis of GSTR-3B vs GSTR-2A/2B mismatch without following this procedure — including obtaining the required CA/CMA certificate — acts without jurisdiction and the demand order is procedurally defective.",
+    pdf:"https://gstcouncil.gov.in/sites/default/files/2024-06/circular-cgst-193.pdf"
+  },
+  {
+    id:3,
+    num:"Circular No. 248/05/2025-GST",
+    date:"27.02.2025",
+    subject:"Clarification on ITC availment — GSTR-2B mismatch and Section 16(2)(aa) conditions for period from January 2022",
+    scope:"mismatch",
+    mandatory:true,
+    provisions:["Rule 36(4)","Section 16(2)(aa)"],
+    applicablePeriod:"January 2022 onwards",
+    summary:"This circular clarifies the application of Section 16(2)(aa) — inserted with effect from 01.01.2022 — which made GSTR-2B reflection a mandatory condition for ITC eligibility. It prescribes the procedure for adjudicating officers handling mismatch cases for the period from January 2022 onwards, where GSTR-2B (rather than GSTR-2A) is the relevant document. The circular also clarifies that where a supplier has filed an amended GSTR-1A rectifying an error, the ITC should be treated as eligible once the amendment is reflected in the buyer's GSTR-2B.",
+    defence:"CBIC Circular No. 248/05/2025-GST dated 27.02.2025 prescribes the mandatory procedure for mismatch cases under Section 16(2)(aa) for the period from January 2022. Where the demand arises solely from non-reflection in GSTR-2B — without independent verification of whether the underlying supply was genuine — the adjudicating authority has not complied with the prescribed procedure. Any demand confirmed without following this circular is independently challengeable.",
+    pdf:""
+  },
+  {
+    id:4,
+    num:"Circular No. 237/31/2024-GST",
+    date:"15.10.2024",
+    subject:"Implementation of Section 16(5) and 16(6) — rectification procedure for ITC denials for FY 2017-18 to FY 2020-21",
+    scope:"timebar",
+    mandatory:true,
+    provisions:["Section 16(4)","Section 16(5)","Section 16(6)","Section 148"],
+    applicablePeriod:"FY 2017-18 to FY 2020-21",
+    summary:"This circular provides the implementation mechanism for the retrospective insertion of Sections 16(5) and 16(6) by the Finance (No. 2) Act 2024. It prescribes a special rectification procedure under Section 148 for taxpayers against whom orders under Section 73/74/107/108 have been passed confirming demands for ITC denial under Section 16(4) — where such ITC is now eligible under Section 16(5) or 16(6). The taxpayer must apply for rectification within 6 months of the Notification No. 22/2024 date (08.10.2024). The proper officer must decide within 3 months of the application.",
+    defence:"CBIC Circular No. 237/31/2024-GST dated 15.10.2024 establishes a mandatory rectification procedure for all demand orders passed under Section 16(4) where the ITC is now eligible under Section 16(5). The Finance (No.2) Act 2024 inserted Section 16(5) with retrospective effect from 01.07.2017 — meaning all ITC denials for FY 2017-18 to FY 2020-21 where GSTR-3B was filed by 30.11.2021 must be reviewed and rectified. An application for rectification filed under Notification No. 22/2024-Central Tax must be decided within 3 months.",
+    pdf:"https://cbic-gst.gov.in/pdf/circular-237-31-2024-GST.pdf"
+  },
+  {
+    id:5,
+    num:"Circular No. 211/05/2024-GST",
+    date:"26.06.2024",
+    subject:"Time limit under Section 16(4) for ITC on RCM supplies from unregistered persons",
+    scope:"timebar",
+    mandatory:false,
+    provisions:["Section 16(4)","Section 9(3)","Section 9(4)"],
+    applicablePeriod:"FY 2017-18 onwards",
+    summary:"This circular clarifies the applicable time limit for availing ITC on Reverse Charge Mechanism (RCM) supplies received from unregistered persons. It clarifies that the time limit under Section 16(4) for RCM supplies is linked to the financial year in which the invoice is issued — not the financial year in which the supply is received. For RCM supplies where the taxpayer is required to issue a self-invoice, the time limit runs from the date of the self-invoice.",
+    defence:"CBIC Circular No. 211/05/2024-GST dated 26.06.2024 clarifies that for RCM supplies from unregistered persons, the Section 16(4) time limit is computed from the date of the self-invoice issued by the recipient — not from the date of supply. Where a demand has been raised denying ITC on the ground that the time limit ran from the date of supply rather than the date of the self-invoice, this circular provides a direct defence against such a misapplication of Section 16(4).",
+    pdf:"https://taxo.online/wp-content/uploads/2024/06/Circular-No-211-05-2024.pdf"
+  },
+  {
+    id:6,
+    num:"Circular No. 170/02/2022-GST",
+    date:"06.07.2022",
+    subject:"Clarification on various ITC issues — blocked credits under Section 17(5) and eligibility conditions",
+    scope:"general",
+    mandatory:false,
+    provisions:["Section 16(1)","Section 17(5)"],
+    applicablePeriod:"FY 2017-18 onwards",
+    summary:"This circular clarifies several disputed ITC eligibility issues including: (1) ITC on goods and services used in construction of immovable property; (2) ITC on motor vehicles used for demonstration purposes; (3) ITC on leasing of vehicles; (4) ITC eligibility for food and beverages in certain specified industries. It also clarifies the scope of blocked credits under Section 17(5) and distinguishes between cases where ITC is allowed versus blocked.",
+    defence:"CBIC Circular No. 170/02/2022-GST dated 06.07.2022 clarifies the eligibility of ITC in several categories that are frequently disputed. Where a demand has been raised denying ITC on the ground that the supply falls under Section 17(5) blocked credits, this circular provides definitive guidance on the scope of each blocked category. ITC cannot be denied in cases that fall outside the specifically enumerated blocked categories.",
+    pdf:""
+  },
+  {
+    id:7,
+    num:"Circular No. 123/42/2019-GST",
+    date:"11.11.2019",
+    subject:"Procedure for reversal of ITC under Rule 42 and Rule 43 — apportionment between taxable and exempt supplies",
+    scope:"reversal",
+    mandatory:false,
+    provisions:["Section 17(1)","Section 17(2)","Rule 42","Rule 43"],
+    applicablePeriod:"FY 2017-18 onwards",
+    summary:"This circular prescribes the method for computing ITC reversal where a registered person makes both taxable and exempt supplies. It clarifies the formula under Rule 42 for input goods and services, and Rule 43 for capital goods. It also clarifies the treatment of common inputs used for both taxable and non-taxable business activities, and provides examples of the computation method.",
+    defence:"CBIC Circular No. 123/42/2019-GST dated 11.11.2019 provides the prescribed formula for ITC apportionment and reversal. Where a demand has been raised alleging excess ITC availed without following the Rule 42/43 apportionment formula, this circular establishes the correct methodology. Any demand that applies a different formula — or demands reversal of ITC that properly belongs to the taxable supply category under the Rule 42 computation — is unsustainable.",
+    pdf:""
+  },
+  {
+    id:8,
+    num:"Circular No. 136/06/2020-GST",
+    date:"03.04.2020",
+    subject:"Relief measures for COVID-19 — cumulative application of Rule 36(4) for Feb to Aug 2020",
+    scope:"mismatch",
+    mandatory:true,
+    provisions:["Rule 36(4)"],
+    applicablePeriod:"February 2020 to August 2020",
+    summary:"In view of the COVID-19 pandemic, this circular clarified that the Rule 36(4) restriction of 10% would apply on a cumulative basis for the period February 2020 to August 2020, and the adjustment would be made in the GSTR-3B for September 2020. Taxpayers were not required to apply the 10% restriction month-by-month during this period — the aggregate position for the 7-month block period was to be computed and adjusted in the September 2020 return.",
+    defence:"CBIC Circular No. 136/06/2020-GST dated 03.04.2020 established that Rule 36(4) applied cumulatively for February to August 2020 — not month-by-month. Any demand that applies the Rule 36(4) restriction on a month-by-month basis for this period is factually and legally incorrect. The demand must be computed on the cumulative 7-month aggregate basis with adjustment in the September 2020 GSTR-3B.",
+    pdf:""
+  },
+  {
+    id:9,
+    num:"Circular No. 76/50/2018-GST",
+    date:"31.12.2018",
+    subject:"Circular clarifying eligibility of ITC in cases of debit notes, credit notes, and revised invoices",
+    scope:"general",
+    mandatory:false,
+    provisions:["Section 16(1)","Section 16(2)","Section 34"],
+    applicablePeriod:"FY 2017-18 onwards",
+    summary:"This circular clarifies the ITC entitlement on debit notes issued by suppliers. It establishes that the time limit under Section 16(4) for availing ITC on debit notes runs from the financial year of the debit note — not the financial year of the original invoice. It also clarifies the treatment of credit notes and their impact on ITC already availed.",
+    defence:"CBIC Circular No. 76/50/2018-GST dated 31.12.2018 clarifies that the Section 16(4) time limit for ITC on debit notes runs from the financial year of the debit note, not the original invoice. Where a demand denies ITC on a debit note on the ground that the original invoice belongs to an earlier financial year for which the Section 16(4) deadline has passed, this circular provides a direct defence — the relevant year is the year of the debit note.",
+    pdf:""
+  },
+  {
+    id:10,
+    num:"Circular No. 212/06/2024-GST",
+    date:"26.06.2024",
+    subject:"Mechanism for providing evidence of ITC reversal by recipients when discount is given via credit note",
+    scope:"reversal",
+    mandatory:false,
+    provisions:["Section 15(3)(b)(ii)","Section 16(1)"],
+    applicablePeriod:"FY 2017-18 onwards",
+    summary:"This circular provides a verification mechanism for ITC reversal by recipients when a supplier issues a post-supply discount credit note. It clarifies that where the tax amount involved in the discount does not exceed Rs. 5 lakh in a financial year, the supplier can obtain an undertaking or CA/CMA certificate from the recipient as proof of ITC reversal — instead of requiring portal-based verification which was not available.",
+    defence:"CBIC Circular No. 212/06/2024-GST dated 26.06.2024 permits suppliers to accept CA/CMA certificates or undertakings as valid proof of ITC reversal by recipients for discount credit notes up to Rs. 5 lakh per year. Where a demand has been raised against a recipient alleging failure to reverse ITC on discount credit notes, and the recipient holds a valid CA/CMA certificate or undertaking, this circular establishes that such documentation is admissible and sufficient evidence.",
+    pdf:"https://taxo.online/wp-content/uploads/2024/06/Circular-No-212-06-2024.pdf"
+  },
+  {
+    id:11,
+    num:"Circular No. 92/11/2019-GST",
+    date:"07.03.2019",
+    subject:"Clarification on ITC for goods sent to job worker — Section 19 and Rule 45",
+    scope:"general",
+    mandatory:false,
+    provisions:["Section 19","Rule 45","Section 16(1)"],
+    applicablePeriod:"FY 2017-18 onwards",
+    summary:"This circular clarifies the ITC eligibility framework for goods sent to job workers. It confirms that ITC on inputs sent to job workers under Section 19 is available to the principal — even where the goods are lying with the job worker at the end of the financial year. It also clarifies the documentation required, including the challan, and the time limit within which goods must be returned from the job worker.",
+    defence:"CBIC Circular No. 92/11/2019-GST dated 07.03.2019 confirms that ITC is available on inputs and capital goods sent to job workers under the Chapter VI framework. Where a demand has been raised denying ITC on the ground that goods were with a job worker — rather than received by the principal — this circular establishes that ITC is available to the principal throughout the period the goods are legitimately in the possession of the job worker.",
+    pdf:""
+  },
+  {
+    id:12,
+    num:"Circular No. 131/01/2020-GST",
+    date:"23.01.2020",
+    subject:"Clarification on standard operating procedure for non-filers of GSTR-3B — impact on recipient ITC",
+    scope:"procedure",
+    mandatory:true,
+    provisions:["Section 46","Section 62","Section 73","Rule 36(4)"],
+    applicablePeriod:"FY 2017-18 onwards",
+    summary:"This circular establishes the Standard Operating Procedure (SOP) that tax authorities must follow before taking action against non-filers of GSTR-3B. It clarifies that the department must first issue notice under Section 46, then proceed under Section 62 for best judgement assessment if the return is still not filed, before moving to Section 73 demand proceedings. This SOP is relevant to recipient ITC cases because the department must exhaust remedies against the supplier before reversing the recipient's ITC.",
+    defence:"CBIC Circular No. 131/01/2020-GST dated 23.01.2020 establishes the mandatory SOP requiring the department to first issue notice under Section 46 and proceed against the supplier under Section 62 before taking action against the recipient's ITC. Where a demand reverses recipient ITC without first exhausting the prescribed SOP against the defaulting supplier, the demand is procedurally defective and liable to be set aside. The department cannot bypass the SOP and directly reverse buyer ITC.",
+    pdf:""
+  },
+];
+
+function filterCirculars(){
+  const q=(document.getElementById('circSrch').value||'').toLowerCase();
+  const sc=(document.getElementById('circScope').value||'');
+  const filtered=CIRCULARS.filter(c=>{
+    const mq=!q||c.num.toLowerCase().includes(q)||c.subject.toLowerCase().includes(q)||c.summary.toLowerCase().includes(q)||c.provisions.join(' ').toLowerCase().includes(q);
+    const ms=!sc||c.scope===sc;
+    return mq&&ms;
+  });
+  document.getElementById('circCount').textContent=filtered.length+' of '+CIRCULARS.length+' circulars';
+  renderCircRows(filtered);
+}
+
+function renderCircRows(data){
+  const scopeLabels={mismatch:'GSTR-2A/2B Mismatch',timebar:'Time Bar — Sec 16(4)',procedure:'SCN Procedure',reversal:'ITC Reversal',general:'General ITC'};
+  const scopeCls={mismatch:'scope-mismatch',timebar:'scope-timebar',procedure:'scope-procedure',reversal:'scope-reversal',general:'scope-general'};
+  document.getElementById('circGrid').innerHTML=data.map(c=>`
+    <div class="circ-card" id="circ-${c.id}">
+      <div class="circ-header" onclick="toggleCirc(${c.id})">
+        <div class="circ-num">${c.num.split('/')[0].replace('Circular No. ','')}</div>
+        <div class="circ-main">
+          <div class="circ-title">${c.num} — ${c.subject}</div>
+          <div class="circ-meta">
+            <span class="circ-date">${c.date}</span>
+            <span style="color:var(--border2);">·</span>
+            <span class="circ-date">Applicable: ${c.applicablePeriod}</span>
+          </div>
+          <div class="circ-provision-tags">
+            ${c.provisions.map(p=>`<span class="prov-tag">${p}</span>`).join('')}
+          </div>
+        </div>
+        <div class="circ-right">
+          <span class="circ-scope ${scopeCls[c.scope]}">${scopeLabels[c.scope]}</span>
+          ${c.mandatory?'<span class="mandatory-badge">⚖️ Binding on Officers</span>':''}
+        </div>
+      </div>
+      <div class="circ-expand" id="circ-expand-${c.id}">
+        <div class="circ-expand-inner">
+          <div>
+            <div class="circ-section-label">What This Circular Says</div>
+            <div class="circ-summary">${c.summary}</div>
+          </div>
+          <div>
+            <div class="circ-section-label">⚖️ Defence Text <span style="font-size:10px;background:var(--gold-l);color:var(--gold);padding:1px 6px;border-radius:4px;margin-left:4px;">Use in SCN Reply</span></div>
+            <div class="circ-defence" id="circdef-${c.id}">
+              <button class="copy-btn" id="circcopy-${c.id}" onclick="copyCircDefence(${c.id})">Copy</button>
+              ${c.defence}
+            </div>
+            <div class="circ-links">
+              ${c.pdf?`<a href="${c.pdf}" target="_blank" class="circ-pdf-btn">📄 View Official Circular</a>`:`<button class="pdf-btn disabled" style="font-size:11px;padding:7px 12px;">📄 PDF Link Coming Soon</button>`}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleCirc(id){
+  document.getElementById('circ-expand-'+id).classList.toggle('open');
+}
+
+function copyCircDefence(id){
+  const c=CIRCULARS.find(x=>x.id===id);
+  if(!c) return;
+  navigator.clipboard.writeText(c.defence).then(()=>{
+    const btn=document.getElementById('circcopy-'+id);
+    btn.textContent='Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
+  });
+}
+
+function renderCirculars(){filterCirculars();}
+
+
+// ── LEGISLATION ──────────────────────────────────────────────────────────
+const STATES = [
+  {code:'01',name:'Jammu & Kashmir',act:'J&K GST Act 2017',note:'Enacted after Art 370 changes',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'02',name:'Himachal Pradesh',act:'HP GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'03',name:'Punjab',act:'Punjab GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'04',name:'Chandigarh (UT)',act:'UTGST Act 2017',note:'Union Territory — UTGST applies',url:'https://cbic-gst.gov.in/gst-acts.html'},
+  {code:'05',name:'Uttarakhand',act:'Uttarakhand GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'06',name:'Haryana',act:'Haryana GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'07',name:'Delhi',act:'Delhi GST Act 2017',note:'UT with legislature — SGST applies',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'08',name:'Rajasthan',act:'Rajasthan GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'09',name:'Uttar Pradesh',act:'UP GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'10',name:'Bihar',act:'Bihar GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'11',name:'Sikkim',act:'Sikkim GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'12',name:'Arunachal Pradesh',act:'AR GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'13',name:'Nagaland',act:'Nagaland GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'14',name:'Manipur',act:'Manipur GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'15',name:'Mizoram',act:'Mizoram GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'16',name:'Tripura',act:'Tripura GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'17',name:'Meghalaya',act:'Meghalaya GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'18',name:'Assam',act:'Assam GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'19',name:'West Bengal',act:'West Bengal GST Act 2017',note:'Calcutta HC jurisdiction — strong ITC case law',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'20',name:'Jharkhand',act:'Jharkhand GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'21',name:'Odisha',act:'Odisha GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'22',name:'Chhattisgarh',act:'Chhattisgarh GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'23',name:'Madhya Pradesh',act:'MP GST Act 2017',note:'MP HC — active Sec 16(4) jurisprudence',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'24',name:'Gujarat',act:'Gujarat GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'27',name:'Maharashtra',act:'Maharashtra GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'28',name:'Andhra Pradesh',act:'AP GST Act 2017',note:'AP HC — active ITC jurisprudence',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'29',name:'Karnataka',act:'Karnataka GST Act 2017',note:'KA HC — Circular 183 leading cases',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'30',name:'Goa',act:'Goa GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'32',name:'Kerala',act:'Kerala GST Act 2017',note:'Kerala HC — leading Sec 16(5) cases',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'33',name:'Tamil Nadu',act:'Tamil Nadu GST Act 2017',note:'Madras HC — landmark ITC batch judgments',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'34',name:'Puducherry',act:'Puducherry GST Act 2017',note:'UT with legislature — SGST applies',url:'https://gstcouncil.gov.in/sgst-act'},
+  {code:'36',name:'Telangana',act:'Telangana GST Act 2017',note:'Mirror of CGST Act',url:'https://gstcouncil.gov.in/sgst-act'},
+];
+
+function renderLegislation(){
+  const tbody = document.getElementById('stateTableBody');
+  if(tbody.innerHTML===''){
+    tbody.innerHTML = STATES.map((s,i)=>`<tr>
+      <td><span class="state-code-badge">${s.code}</span></td>
+      <td style="font-weight:500;color:var(--ink);">${s.name}</td>
+      <td style="color:var(--ink3);">${s.act}</td>
+      <td style="font-size:11px;color:var(--ink4);">${s.note}</td>
+      <td><a href="${s.url}" target="_blank" class="act-link-btn alb-primary" style="font-size:11px;padding:5px 10px;">Official Act →</a></td>
+    </tr>`).join('');
+  }
+}
+
+function switchLegTab(tab){
+  document.querySelectorAll('.leg-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.leg-section').forEach(s=>s.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('leg-'+tab).classList.add('active');
+  if(tab==='states') renderLegislation();
+}
+
+</script>
+</body>
+</html>

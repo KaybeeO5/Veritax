@@ -1,0 +1,124 @@
+VERITAX — PROPRIETARY SOFTWARE LICENSE
+===============================================================================
+
+Copyright (c) 2025 Kaustubh Balaji. All rights reserved.
+
+This software and all associated materials, including but not limited to
+source code, user interface design, legal logic architecture, case law
+dataset, decision tree system, Tree Branch Tag framework, AI prompt
+engineering, and all documentation (collectively "the Software") are the
+exclusive intellectual property of Kaustubh Balaji ("the Owner").
+
+===============================================================================
+WHAT IS PERMITTED
+===============================================================================
+
+The following are permitted without prior written consent of the Owner:
+
+  1. Viewing this repository and the Software for personal evaluation,
+     research, or demonstration purposes only.
+
+  2. Referencing or citing this work in academic, professional, or
+     journalistic contexts, provided clear and prominent attribution is
+     given to Kaustubh Balaji as the original creator and owner.
+
+  3. Sharing a link to this repository for the purpose of demonstrating
+     or discussing the Software, provided no copying of content occurs.
+
+===============================================================================
+WHAT IS NOT PERMITTED
+===============================================================================
+
+The following are strictly prohibited without the prior express written
+consent of the Owner:
+
+  1. COPYING — Reproducing, downloading, or duplicating any part of the
+     Software, its code, design, content, or underlying logic, in whole
+     or in part, by any means.
+
+  2. MODIFICATION — Adapting, translating, transforming, or creating
+     derivative works based on the Software or any component thereof.
+
+  3. DISTRIBUTION — Publishing, sharing, sublicensing, selling, or
+     otherwise making available the Software or any part of it to any
+     third party.
+
+  4. COMMERCIAL USE — Using the Software, its legal logic, case law
+     dataset, decision tree architecture, AI prompt system, or any
+     derivative thereof in any commercial product, service, platform,
+     or application, whether directly or indirectly.
+
+  5. REVERSE ENGINEERING — Attempting to extract, reconstruct, or
+     replicate the underlying legal logic, case classification system,
+     Tree Branch Tag architecture, or AI prompt methodology of the
+     Software for use in any other system or application.
+
+  6. MISREPRESENTATION — Representing the Software or any part of it
+     as your own work, or removing or obscuring any copyright, ownership,
+     or attribution notices.
+
+===============================================================================
+INTELLECTUAL PROPERTY NOTICE
+===============================================================================
+
+The following components of Narentis constitute original intellectual
+property of the Owner and are protected under applicable copyright,
+trade secret, and intellectual property laws of India:
+
+  - The Narentis application interface and design system
+  - The dual-track GST ITC denial decision tree architecture
+    (Track A: Section 16(4) Analyser; Track B: Rule 36(4) Engine)
+  - The 75-case verified GST ITC denial judgment dataset with
+    proprietary labelling system (Denial Ground, Legal Sustainability
+    Score, Recommended Action, Tree Branch Tag, Category Classification)
+  - The Tree Branch Tag classification framework
+  - The GIT-PREW / Narentis Master Prompt engineering methodology
+  - The Legal Sustainability Score (1-10) system and mapping logic
+  - The Supplier Risk Scoring methodology (GREEN/AMBER/RED/BLACK)
+  - The Narentis brand identity, name, and logo
+
+===============================================================================
+ENFORCEMENT
+===============================================================================
+
+Any unauthorised use, copying, modification, distribution, or commercial
+exploitation of this Software or any of its components will constitute
+infringement of the Owner's intellectual property rights and may result
+in civil and/or criminal liability under the Copyright Act, 1957 (India),
+the Information Technology Act, 2000 (India), and other applicable laws.
+
+The Owner reserves the right to pursue all available legal remedies,
+including injunctive relief and damages, against any person or entity
+found to be in violation of this license.
+
+===============================================================================
+DISCLAIMER
+===============================================================================
+
+THE SOFTWARE IS PROVIDED FOR DEMONSTRATION AND EVALUATION PURPOSES ONLY.
+VERITAX IS AN AI-ASSISTED DECISION-SUPPORT TOOL AND DOES NOT CONSTITUTE
+LEGAL ADVICE. ALL OUTPUTS MUST BE REVIEWED BY A QUALIFIED GST PRACTITIONER
+BEFORE ANY LEGAL ACTION IS TAKEN. THE OWNER MAKES NO WARRANTIES, EXPRESS
+OR IMPLIED, REGARDING THE ACCURACY, COMPLETENESS, OR FITNESS FOR PURPOSE
+OF ANY ANALYSIS PRODUCED BY THE SOFTWARE.
+
+===============================================================================
+LICENSING AND COMMERCIAL ENQUIRIES
+===============================================================================
+
+For licensing, partnership, acquisition, white-label, or API integration
+enquiries, please contact the Owner directly.
+
+All enquiries regarding permitted use of this Software should be directed
+to the Owner in writing before any use commences.
+
+===============================================================================
+
+Kaustubh Balaji
+Creator and Owner — Narentis
+India
+2025
+
+"Truth in every tax credit."
+
+===============================================================================
